@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: org.example.StringCalculatorTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.038 s <<< FAILURE! - in org.example.StringCalculatorTest
+testDelimiterNumber  Time elapsed: 0.006 s  <<< ERROR!
+java.lang.NumberFormatException: For input string: "//;"
+	at org.example.StringCalculatorTest.testDelimiterNumber(StringCalculatorTest.java:33)
+
+testAssortedDelimiters  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NumberFormatException: For input string: "//[***]"
+	at org.example.StringCalculatorTest.testAssortedDelimiters(StringCalculatorTest.java:43)
+
+testLargerThenThousand  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NumberFormatException: For input string: "2 "
+	at org.example.StringCalculatorTest.testLargerThenThousand(StringCalculatorTest.java:38)
+

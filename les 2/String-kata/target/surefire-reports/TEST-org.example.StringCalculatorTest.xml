@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.example.StringCalculatorTest" time="0.038" tests="6" errors="3" skipped="0" failures="0">
+  <properties>
+    <property name="sun.desktop" value="windows"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.specification.version" value="12"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\dev\HANICA-OOSE-DEA\les 2\String-kata\target\test-classes;C:\dev\HANICA-OOSE-DEA\les 2\String-kata\target\classes;C:\Users\stole\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.7.0\junit-jupiter-engine-5.7.0.jar;C:\Users\stole\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\stole\.m2\repository\org\junit\platform\junit-platform-engine\1.7.0\junit-platform-engine-1.7.0.jar;C:\Users\stole\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.0\junit-jupiter-api-5.7.0.jar;C:\Users\stole\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\stole\.m2\repository\org\junit\platform\junit-platform-commons\1.7.0\junit-platform-commons-1.7.0.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Europe/Amsterdam"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="12"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\jdk-12\bin"/>
+    <property name="sun.java.command" value="C:\Users\stole\AppData\Local\Temp\surefire16432414878852839659\surefirebooter9545099979758318851.jar C:\Users\stole\AppData\Local\Temp\surefire16432414878852839659 2021-02-03T11-57-59_591-jvmRun1 surefire4753828969512334699tmp surefire_013118392647331220314tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\dev\HANICA-OOSE-DEA\les 2\String-kata\target\test-classes;C:\dev\HANICA-OOSE-DEA\les 2\String-kata\target\classes;C:\Users\stole\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.7.0\junit-jupiter-engine-5.7.0.jar;C:\Users\stole\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\stole\.m2\repository\org\junit\platform\junit-platform-engine\1.7.0\junit-platform-engine-1.7.0.jar;C:\Users\stole\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.0\junit-jupiter-api-5.7.0.jar;C:\Users\stole\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\stole\.m2\repository\org\junit\platform\junit-platform-commons\1.7.0\junit-platform-commons-1.7.0.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\stole"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2019-03-19"/>
+    <property name="java.home" value="C:\Program Files\jdk-12"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\dev\HANICA-OOSE-DEA\les 2\String-kata"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="C:\Users\stole\AppData\Local\Temp\surefire16432414878852839659\surefirebooter9545099979758318851.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="12+33"/>
+    <property name="user.name" value="stole"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\stole\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\stole\AppData\Local\Temp\"/>
+    <property name="idea.version" value="2020.3.2"/>
+    <property name="java.version" value="12"/>
+    <property name="user.dir" value="C:\dev\HANICA-OOSE-DEA\les 2\String-kata"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Program Files\jdk-12\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\PuTTY\;%MAVEN_HOME%\bin;C:\Program Files\jdk-12\bin;C:\Users\stole\AppData\Local\Microsoft\WindowsApps;;C:\Users\stole\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\stole\AppData\Roaming\npm;C:\Program Files\JetBrains\IntelliJ IDEA 2020.3.2\bin;;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="12+33"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="56.0"/>
+  </properties>
+  <testcase name="testNewLineNumber" classname="org.example.StringCalculatorTest" time="0.023"/>
+  <testcase name="testSingleNumber" classname="org.example.StringCalculatorTest" time="0.001"/>
+  <testcase name="testDelimiterNumber" classname="org.example.StringCalculatorTest" time="0.006">
+    <error message="For input string: &quot;//;&quot;" type="java.lang.NumberFormatException">java.lang.NumberFormatException: For input string: "//;"
+	at org.example.StringCalculatorTest.testDelimiterNumber(StringCalculatorTest.java:33)
+</error>
+  </testcase>
+  <testcase name="testAssortedDelimiters" classname="org.example.StringCalculatorTest" time="0.001">
+    <error message="For input string: &quot;//[***]&quot;" type="java.lang.NumberFormatException">java.lang.NumberFormatException: For input string: "//[***]"
+	at org.example.StringCalculatorTest.testAssortedDelimiters(StringCalculatorTest.java:43)
+</error>
+  </testcase>
+  <testcase name="testEmptyString" classname="org.example.StringCalculatorTest" time="0.001"/>
+  <testcase name="testLargerThenThousand" classname="org.example.StringCalculatorTest" time="0.001">
+    <error message="For input string: &quot;2 &quot;" type="java.lang.NumberFormatException">java.lang.NumberFormatException: For input string: "2 "
+	at org.example.StringCalculatorTest.testLargerThenThousand(StringCalculatorTest.java:38)
+</error>
+  </testcase>
+</testsuite>
