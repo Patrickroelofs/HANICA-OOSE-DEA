@@ -8,46 +8,46 @@ public class OrdersWriter {
     }
 
     public String getContents() {
-        StringBuffer sb = new StringBuffer("{\"orders\": [");
+        StringBuffer StringBuffer = new StringBuffer("{\"orders\": [");
 
         for (int i = 0; i < orders.getOrdersCount(); i++) {
             Order order = orders.getOrder(i);
-            sb.append("{\"id\": ");
-            sb.append(order.getOrderId());
-            sb.append(", \"products\": [");
+            StringBuffer.append("{\"id\": ");
+            StringBuffer.append(order.getOrderId());
+            StringBuffer.append(", \"products\": [");
             for (int j = 0; j < order.getProductsCount(); j++) {
                 Product product = order.getProduct(j);
 
-                sb.append("{\"code\": \"");
-                sb.append(product.getCode());
-                sb.append("\", \"color\": \"");
-                sb.append(product.getColorString());
-                sb.append("\", ");
+                StringBuffer.append("{\"code\": \"");
+                StringBuffer.append(product.getCode());
+                StringBuffer.append("\", \"color\": \"");
+                StringBuffer.append(product.getColorString());
+                StringBuffer.append("\", ");
 
                 if (product.getSize() != -1) {
-                    sb.append("\"size\": \"");
-                    sb.append(product.getSizeString());
-                    sb.append("\", ");
+                    StringBuffer.append("\"size\": \"");
+                    StringBuffer.append(product.getSizeString());
+                    StringBuffer.append("\", ");
                 }
 
-                sb.append("\"price\": ");
-                sb.append(product.getPrice());
-                sb.append(", \"currency\": \"");
-                sb.append(product.getCurrency());
-                sb.append("\"}, ");
+                StringBuffer.append("\"price\": ");
+                StringBuffer.append(product.getPrice());
+                StringBuffer.append(", \"currency\": \"");
+                StringBuffer.append(product.getCurrency());
+                StringBuffer.append("\"}, ");
             }
 
             if (order.getProductsCount() > 0) {
-                sb.delete(sb.length() - 2, sb.length());
+                StringBuffer.delete(StringBuffer.length() - 2, StringBuffer.length());
             }
 
-            sb.append("]}, ");
+            StringBuffer.append("]}, ");
         }
 
         if (orders.getOrdersCount() > 0) {
-            sb.delete(sb.length() - 2, sb.length());
+            StringBuffer.delete(StringBuffer.length() - 2, StringBuffer.length());
         }
 
-        return sb.append("]}").toString();
+        return StringBuffer.append("]}").toString();
     }
 }
