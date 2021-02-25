@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b3b0519-b399-4ace-abb1-16fb32bcb34c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/maven-threading.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/patrickroelofs/han/NumberUnderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/patrickroelofs/han/OuchIFoundThirtySevenAndHenceMustDieException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/patrickroelofs/han/PrimeTester.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/patrickroelofs/han/PrimeTestingApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/patrickroelofs/han/AppTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="0b3b0519-b399-4ace-abb1-16fb32bcb34c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,17 +63,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.PrimeTestingApp" />
@@ -101,6 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1613037399551</updated>
       <workItem from="1613037400730" duration="3279000" />
+      <workItem from="1613071235659" duration="2000" />
     </task>
     <servers />
   </component>
