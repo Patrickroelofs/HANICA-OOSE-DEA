@@ -13,6 +13,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="jeeLesDemo21" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: jakarta.ws.rs:jakarta.ws.rs-api:2.1.6" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/jeeLesDemo21/META-INF/MANIFEST.MF" />
