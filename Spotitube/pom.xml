@@ -30,6 +30,21 @@
             <version>3.8.0</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- CORS -->
+        <dependency>
+            <groupId>com.airhacks</groupId>
+            <artifactId>jaxrs-cors</artifactId>
+            <version>0.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Database driver -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.15</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>Spotitube</finalName>

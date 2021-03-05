@@ -9,5 +9,8 @@
         <module name="Spotitube" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Spotitube" target="12" />
+    </bytecodeTargetLevel>
   </component>
 </project>
