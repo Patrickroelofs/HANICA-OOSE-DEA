@@ -1,0 +1,12 @@
+GET http://localhost:8080/api/test
+
+<> 2021-03-04T233245.200.html
+
+###
+
+GET http://localhost:8080/test
+
+<> 2021-03-04T233224.404.html
+
+###
+
