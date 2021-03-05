@@ -1,5 +1,0 @@
-oose\dea\services\exceptions\IdAlreadyInUseException.class
-oose\dea\services\exceptions\ItemNotAvailableException.class
-oose\dea\services\dto\ItemDTO.class
-oose\dea\resources\HealthCheckResource.class
-oose\dea\services\ItemService.class
