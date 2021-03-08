@@ -4,6 +4,7 @@ import com.spotitube.controller.dto.UserDTO;
 import com.spotitube.datasource.dao.UserDAO;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.sql.DataSource;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -14,8 +15,8 @@ import java.sql.SQLException;
 @Path("user")
 public class UserController {
 
-  @Resource(name = "jdbc/spotitube")
-  DataSource dataSource;
+  @Inject
+  UserDAO userDAO;
 
   // TODO: Login user
   @POST
@@ -23,14 +24,11 @@ public class UserController {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response login(UserDTO userDTO) {
-
-    try {
-      Connection connection = dataSource.getConnection();
-    } catch (SQLException exception) {
-      exception.printStackTrace();
+    if(userDAO.isAuthenticated(userDTO)) {
+      return Response.status(200).entity(userDTO).build();
+    } else {
+      return Response.status(401).build();
     }
-
-    return Response.status(200).entity(userDTO).build();
   }
 
   // TODO: Create user

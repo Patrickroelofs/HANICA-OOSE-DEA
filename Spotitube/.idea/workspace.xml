@@ -10,17 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bd94e4c-3310-4bdf-a8af-9029576de7f7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/TomEE_9_0_37.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/setup_database___insert_data.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/IUserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8932f413-f35a-4394-9d4f-ec8400133af6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8932f413-f35a-4394-9d4f-ec8400133af6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/dto/TokenDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/createscript.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/createscript.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/exampledata.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/exampledata.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/IUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/IUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +34,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -148,7 +152,10 @@
       <workItem from="1615132181320" duration="2770000" />
       <workItem from="1615136316734" duration="7956000" />
       <workItem from="1615154249893" duration="242000" />
-      <workItem from="1615154758688" duration="356000" />
+      <workItem from="1615154758688" duration="908000" />
+      <workItem from="1615156512841" duration="2035000" />
+      <workItem from="1615159702002" duration="366000" />
+      <workItem from="1615196916649" duration="3395000" />
     </task>
     <servers />
   </component>
@@ -166,17 +173,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/spotitube/controller/UserController.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

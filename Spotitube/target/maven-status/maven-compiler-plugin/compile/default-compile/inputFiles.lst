@@ -1,1 +1,5 @@
 /Users/patrickroelofs/Documents/dev/HANICA-OOSE-DEA/Spotitube/src/main/java/com/airhacks/JAXRSConfiguration.java
+/Users/patrickroelofs/Documents/dev/HANICA-OOSE-DEA/Spotitube/src/main/java/com/spotitube/datasource/dao/UserDAO.java
+/Users/patrickroelofs/Documents/dev/HANICA-OOSE-DEA/Spotitube/src/main/java/com/spotitube/datasource/IUserDAO.java
+/Users/patrickroelofs/Documents/dev/HANICA-OOSE-DEA/Spotitube/src/main/java/com/spotitube/controller/dto/UserDTO.java
+/Users/patrickroelofs/Documents/dev/HANICA-OOSE-DEA/Spotitube/src/main/java/com/spotitube/controller/UserController.java
