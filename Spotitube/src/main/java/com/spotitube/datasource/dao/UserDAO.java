@@ -13,8 +13,8 @@ import java.sql.SQLException;
 
 public class UserDAO implements IUserDAO {
 
-  @Resource(name = "jdbc/Spotitube")
-  private DataSource dataSource;
+  @Resource(name = "jdbc/spotitube")
+  DataSource dataSource;
 
   @Override
   public boolean isAuthenticated(UserDTO userDTO) {
