@@ -10,13 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bd94e4c-3310-4bdf-a8af-9029576de7f7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/dto/TokenDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/ITokenDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/TokenDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/airhacks/JAXRSConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/airhacks/JAXRSConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/dto/TokenDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/dto/TokenDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/dto/UserDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/IUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/IUserDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +29,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package-info" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -69,7 +71,7 @@
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -104,17 +106,6 @@
     </option>
   </component>
   <component name="RunManager" selected="TomEE Server.TomEE 9.0.37">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
       <option name="adminPort" value="8005" />
       <option name="contextPath" />
@@ -155,7 +146,12 @@
       <workItem from="1615154758688" duration="908000" />
       <workItem from="1615156512841" duration="2035000" />
       <workItem from="1615159702002" duration="366000" />
-      <workItem from="1615196916649" duration="3395000" />
+      <workItem from="1615196916649" duration="5043000" />
+      <workItem from="1615305014587" duration="149000" />
+      <workItem from="1615305175451" duration="62000" />
+      <workItem from="1615305736673" duration="3567000" />
+      <workItem from="1615324538761" duration="11000" />
+      <workItem from="1615324978336" duration="1002000" />
     </task>
     <servers />
   </component>

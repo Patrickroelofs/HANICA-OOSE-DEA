@@ -1,7 +1,7 @@
 package com.spotitube.controller.dto;
 
 public class UserDTO {
-  private String username;
+  private String user;
   private String password;
 
   public UserDTO() {
@@ -9,16 +9,16 @@ public class UserDTO {
   }
 
   public UserDTO(String username, String password) {
-      setUsername(username);
+      setUser(username);
       setPassword(password);
   }
 
-  public String getUsername() {
-    return username;
+  public String getUser() {
+    return user;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
+  public void setUser(String user) {
+    this.user = user;
   }
 
   public String getPassword() {

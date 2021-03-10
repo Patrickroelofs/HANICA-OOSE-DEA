@@ -1,7 +1,7 @@
 package com.spotitube.datasource.dao;
 
-import com.spotitube.controller.dto.UserDTO;
-import com.spotitube.datasource.IUserDAO;
+import com.spotitube.controller.dto.TokenDTO;
+import com.spotitube.datasource.ITokenDAO;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -10,33 +10,33 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.UUID;
 
-public class UserDAO implements IUserDAO {
+public class TokenDAO implements ITokenDAO {
 
   @Resource(name = "jdbc/spotitube")
   DataSource dataSource;
 
   @Override
-  public boolean verifyUser(UserDTO userDTO) {
+  public TokenDTO insert(String username) {
 
-    boolean result = false;
+    TokenDTO tokenDTO = new TokenDTO(username);
+    TokenDTO result = null;
 
     try (Connection connection = dataSource.getConnection()) {
-      String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+      String sql = "UPDATE users SET token = ? WHERE username = ?";
       PreparedStatement preparedStatement = connection.prepareStatement(sql);
-      preparedStatement.setString(1, userDTO.getUser());
-      preparedStatement.setString(2, userDTO.getPassword());
+      preparedStatement.setString(1, tokenDTO.getToken());
+      preparedStatement.setString(2, username);
       ResultSet resultSet = preparedStatement.executeQuery();
 
       if(resultSet.next()) {
-        result = true;
+        result = tokenDTO;
       }
+
+      return result;
 
     } catch (SQLException e) {
       throw new InternalServerErrorException(e);
     }
-
-    return result;
   }
 }

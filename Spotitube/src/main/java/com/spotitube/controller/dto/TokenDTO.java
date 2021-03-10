@@ -1,23 +1,38 @@
 package com.spotitube.controller.dto;
 
+import java.util.UUID;
+
 public class TokenDTO {
-  private String username;
+  private String user;
   private String token;
+
+  public TokenDTO(String user) {
+    this.user = user;
+    this.token = generateToken();
+  }
 
   public TokenDTO() {
 
   }
 
-  public TokenDTO(String username, String token) {
-    this.username = username;
-    this.token = token;
+  public String generateToken() {
+    return UUID.randomUUID().toString();
   }
 
-  public String getUsername() {
-    return username;
+
+  public String getUser() {
+    return user;
+  }
+
+  public void setUser(String user) {
+    this.user = user;
   }
 
   public String getToken() {
     return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
   }
 }
