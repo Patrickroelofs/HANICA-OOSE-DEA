@@ -27,11 +27,8 @@ public class TokenDAO implements ITokenDAO {
       PreparedStatement preparedStatement = connection.prepareStatement(sql);
       preparedStatement.setString(1, tokenDTO.getToken());
       preparedStatement.setString(2, username);
-      ResultSet resultSet = preparedStatement.executeQuery();
-
-      if(resultSet.next()) {
-        result = tokenDTO;
-      }
+      preparedStatement.executeUpdate();
+      result = tokenDTO;
 
       return result;
 
