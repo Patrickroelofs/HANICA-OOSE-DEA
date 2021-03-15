@@ -20,20 +20,15 @@ public class TokenDAO implements ITokenDAO {
   public TokenDTO insert(String username) {
 
     TokenDTO tokenDTO = new TokenDTO(username);
-    TokenDTO result = null;
 
     try (Connection connection = dataSource.getConnection()) {
       String sql = "UPDATE users SET token = ? WHERE username = ?";
       PreparedStatement preparedStatement = connection.prepareStatement(sql);
       preparedStatement.setString(1, tokenDTO.getToken());
       preparedStatement.setString(2, username);
-      ResultSet resultSet = preparedStatement.executeQuery();
+      preparedStatement.executeUpdate();
 
-      if(resultSet.next()) {
-        result = tokenDTO;
-      }
-
-      return result;
+      return tokenDTO;
 
     } catch (SQLException e) {
       throw new InternalServerErrorException(e);
