@@ -56,4 +56,23 @@ public class TokenDAO implements ITokenDAO {
 
     return result;
   }
+
+  @Override
+  public String getUsername(String token) {
+    try(Connection connection = dataSource.getConnection()) {
+      String sql = "SELECT * FROM users WHERE token = ?";
+      PreparedStatement preparedStatement = connection.prepareStatement(sql);
+      preparedStatement.setString(1, token);
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      if(resultSet.first()) {
+        return resultSet.getString("username");
+      } else {
+        return null;
+      }
+
+    } catch(SQLException e) {
+      throw new InternalServerErrorException(e);
+    }
+  }
 }
