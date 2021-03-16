@@ -25,8 +25,10 @@ public class TrackController {
   @GET
   @Path("/tracks")
   @Produces(MediaType.APPLICATION_JSON)
-  public Response getAllTracks() {
-    return null;
+  public Response getAllTracks(@QueryParam("forPlaylist") int playlistId, @QueryParam("token") String token) {
+    if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
+
+    return Response.status(200).entity(tracksDTO(playlistId, token)).build();
   }
 
   @GET
@@ -39,18 +41,24 @@ public class TrackController {
   }
 
   @POST
-  @Path("/{id}/tracks")
+  @Path("/playlists/{id}/tracks")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response addTrackToPlaylist() {
-    return null;
+  public Response addTrackToPlaylist(@PathParam("id") int playlistId, TrackDTO trackDTO, @QueryParam("token") String token) {
+    if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
+
+    trackDAO.addTrackToPlaylist(playlistId, trackDTO.id, trackDTO.offlineAvailable);
+    return Response.status(201).entity(tracksDTO(playlistId, token)).build();
   }
 
   @DELETE
-  @Path("/{playlistid}/tracks/{trackid}")
+  @Path("/playlists/{playlistid}/tracks/{trackid}")
   @Produces(MediaType.APPLICATION_JSON)
-  public Response deleteTrackFromPlaylist() {
-    return null;
+  public Response deleteTrackFromPlaylist(@PathParam("playlistid") int playlistId, @PathParam("trackid") int trackId, @QueryParam("token") String token) {
+    if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
+
+    trackDAO.deleteTrack(playlistId, trackId);
+    return Response.status(200).entity(tracksDTO(playlistId, token)).build();
   }
 
   public TracksDTO tracksDTO(int forPlaylist, String token) {

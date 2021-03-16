@@ -48,4 +48,33 @@ public class TrackDAO implements ITrackDAO {
             throw new InternalServerErrorException(e);
         }
     }
+
+    @Override
+    public void deleteTrack(int playlistId, int trackId) {
+        try(Connection connection = dataSource.getConnection()) {
+            String sql = "DELETE FROM playlists_tracks WHERE playlistId = ? AND trackId = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, playlistId);
+            preparedStatement.setInt(2, trackId);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new InternalServerErrorException(e);
+        }
+    }
+
+    @Override
+    public void addTrackToPlaylist(int playlistId, int trackId, boolean offlineAvailable) {
+        try(Connection connection = dataSource.getConnection()) {
+            String sql = "INSERT INTO playlists_tracks (id, playlistid, trackid) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, playlistId);
+            preparedStatement.setInt(2, trackId);
+            preparedStatement.setBoolean(3, offlineAvailable);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new InternalServerErrorException(e);
+        }
+    }
 }
