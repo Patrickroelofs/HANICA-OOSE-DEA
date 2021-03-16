@@ -34,4 +34,26 @@ public class TokenDAO implements ITokenDAO {
       throw new InternalServerErrorException(e);
     }
   }
+
+  @Override
+  public boolean verify(String token) {
+
+    boolean result = false;
+
+    try (Connection connection = dataSource.getConnection()) {
+      String sql = "SELECT * FROM users WHERE token = ?";
+      PreparedStatement preparedStatement = connection.prepareStatement(sql);
+      preparedStatement.setString(1, token);
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      if(resultSet.next()) {
+        result = true;
+      }
+
+    } catch(SQLException e) {
+      throw new InternalServerErrorException(e);
+    }
+
+    return result;
+  }
 }
