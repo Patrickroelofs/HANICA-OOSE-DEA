@@ -2,7 +2,6 @@ package com.spotitube.controller;
 
 import com.spotitube.controller.dto.PlaylistDTO;
 import com.spotitube.controller.dto.PlaylistsDTO;
-import com.spotitube.datasource.IPlaylistDAO;
 import com.spotitube.datasource.dao.PlaylistDAO;
 import com.spotitube.datasource.dao.TokenDAO;
 import com.spotitube.domain.Playlist;
@@ -14,7 +13,7 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
-@Path("playlists")
+@Path("/")
 public class PlaylistController {
 
   @Inject
@@ -24,6 +23,7 @@ public class PlaylistController {
   PlaylistDAO playlistDAO;
 
   @GET
+  @Path("/playlists")
   @Produces(MediaType.APPLICATION_JSON)
   public Response getAllPlaylists(@QueryParam("token") String token) {
     if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
@@ -32,7 +32,7 @@ public class PlaylistController {
   }
 
   @PUT
-  @Path("/{id}")
+  @Path("/playlists/{id}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response editPlaylist(PlaylistDTO playlistDTO, @QueryParam("token") String token) {
@@ -43,7 +43,7 @@ public class PlaylistController {
   }
 
   @DELETE
-  @Path("/{id}")
+  @Path("/playlists/{id}")
   @Produces(MediaType.APPLICATION_JSON)
   public Response deletePlaylist(@PathParam("id") int id, @QueryParam("token") String token) {
     if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
@@ -53,6 +53,7 @@ public class PlaylistController {
   }
 
   @POST
+  @Path("/playlists")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response addPlaylist(PlaylistDTO playlistDTO, @QueryParam("token") String token) {

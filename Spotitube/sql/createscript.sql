@@ -23,28 +23,25 @@ create table playlists (
     primary key(id)
 );
 
-/* Table: Performer */
-create table performer (
-    id int not null auto_increment,
-    name varchar(255) not null,
-
-    primary key(id),
-    unique(name)
+/* Table: Playlists_tracks */
+create table playlists_tracks (
+    id int not null,
+    playlistId int not null,
+    trackId int not null
 );
 
 /* Table: Track */
-create table track (
+create table tracks (
     id int not null auto_increment,
     title varchar(255) not null,
-    performer int not null,
+    performer varchar(255) not null,
     duration int not null,
     album varchar(255) null,
     playcount int null,
-    publicationDate date null,
+    publicationDate varchar(255) null,
     description varchar(500) null,
     offlineAvailable boolean not null,
 
-    primary key (id),
-    foreign key (id) references performer (id)
+    primary key (id)
 )
 

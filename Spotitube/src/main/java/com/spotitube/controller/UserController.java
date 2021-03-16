@@ -10,7 +10,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("login")
+@Path("/")
 public class UserController {
 
   @Inject
@@ -20,6 +20,7 @@ public class UserController {
   private TokenDAO tokenDAO;
 
   @POST
+  @Path("/login")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response login(UserDTO userDTO) {
