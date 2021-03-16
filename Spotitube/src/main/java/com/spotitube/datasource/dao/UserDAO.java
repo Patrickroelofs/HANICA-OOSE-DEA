@@ -25,8 +25,8 @@ public class UserDAO implements IUserDAO {
     try (Connection connection = dataSource.getConnection()) {
       String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
       PreparedStatement preparedStatement = connection.prepareStatement(sql);
-      preparedStatement.setString(1, userDTO.getUser());
-      preparedStatement.setString(2, userDTO.getPassword());
+      preparedStatement.setString(1, userDTO.user);
+      preparedStatement.setString(2, userDTO.password);
       ResultSet resultSet = preparedStatement.executeQuery();
 
       if(resultSet.next()) {

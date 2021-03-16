@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
 public class TokenDAO implements ITokenDAO {
 
@@ -19,13 +20,15 @@ public class TokenDAO implements ITokenDAO {
   @Override
   public TokenDTO insert(String username) {
 
-    TokenDTO tokenDTO = new TokenDTO(username);
+    TokenDTO tokenDTO = new TokenDTO();
+    tokenDTO.token = UUID.randomUUID().toString();
+    tokenDTO.user = username;
 
     try (Connection connection = dataSource.getConnection()) {
       String sql = "UPDATE users SET token = ? WHERE username = ?";
       PreparedStatement preparedStatement = connection.prepareStatement(sql);
-      preparedStatement.setString(1, tokenDTO.getToken());
-      preparedStatement.setString(2, username);
+      preparedStatement.setString(1, tokenDTO.token);
+      preparedStatement.setString(2, tokenDTO.user);
       preparedStatement.executeUpdate();
 
       return tokenDTO;
@@ -60,16 +63,16 @@ public class TokenDAO implements ITokenDAO {
   @Override
   public String getUsername(String token) {
     try(Connection connection = dataSource.getConnection()) {
-      String sql = "SELECT * FROM users WHERE token = ?";
+      String sql = "SELECT username FROM users WHERE token = ?";
       PreparedStatement preparedStatement = connection.prepareStatement(sql);
       preparedStatement.setString(1, token);
       ResultSet resultSet = preparedStatement.executeQuery();
 
-      if(resultSet.first()) {
-        return resultSet.getString("username");
-      } else {
-        return null;
+      while(resultSet.next()) {
+        return resultSet.getString(1);
       }
+
+      return null;
 
     } catch(SQLException e) {
       throw new InternalServerErrorException(e);
