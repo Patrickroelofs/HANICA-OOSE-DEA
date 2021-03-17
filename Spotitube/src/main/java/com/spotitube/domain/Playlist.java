@@ -1,9 +1,5 @@
 package com.spotitube.domain;
 
-import com.spotitube.controller.dto.PlaylistDTO;
-import com.spotitube.controller.dto.PlaylistsDTO;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Playlist {

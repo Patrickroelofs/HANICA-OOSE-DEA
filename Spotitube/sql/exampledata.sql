@@ -11,7 +11,7 @@ INSERT INTO tracks (id, title, performer, duration, album, playcount, publicatio
 (2, 'Heartless', 'The Weeknd', 198, 'After Hours', 257, '23-03-2020', 'Song about the heartless people', 0),
 (3, 'In Your Eyes', 'The Weeknd', 238, 'After Hours', 99, '23-03-2020', 'Song about your eyes', 0);
 
-INSERT INTO playlists_tracks (id, playlistId, trackId) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 2, 3);
+INSERT INTO playlists_tracks (playlistId, trackId, offlineAvailable) VALUES
+(1, 1, 0),
+(2, 2, 1),
+(2, 3, 1);

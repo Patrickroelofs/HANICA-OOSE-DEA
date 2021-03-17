@@ -38,7 +38,9 @@ public class PlaylistDAO implements IPlaylistDAO {
   @Override
   public List<Playlist> getAllPlaylists(String token) {
     try (Connection connection = dataSource.getConnection()) {
-      String sql = "SELECT p.id, p.name, u.token FROM playlists p INNER JOIN users u on p.owner = u.username";
+      String sql = "SELECT p.id, p.name, u.token, " +
+              "(SELECT SUM(duration) FROM tracks INNER JOIN playlists_tracks pt on tracks.id = pt.trackId WHERE pt.playlistId = p.id) AS length FROM playlists p " +
+              "INNER JOIN users u on p.owner = u.username";
 
       PreparedStatement preparedStatement = connection.prepareStatement(sql);
       ResultSet resultSet = preparedStatement.executeQuery();
@@ -51,8 +53,7 @@ public class PlaylistDAO implements IPlaylistDAO {
         playlist.setName(resultSet.getString("p.name"));
         playlist.setOwner(resultSet.getString("u.token").equals(token));
 
-        //TODO: SET DURATION WITH MAGIC
-        playlist.setDuration(100);
+        playlist.setDuration(resultSet.getInt("length"));
         playlists.add(playlist);
       }
       return playlists;

@@ -28,7 +28,7 @@ public class TrackController {
   public Response getAllTracks(@QueryParam("forPlaylist") int playlistId, @QueryParam("token") String token) {
     if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
 
-    return Response.status(200).entity(tracksDTO(playlistId, token)).build();
+    return Response.status(200).entity(tracksDTO(playlistId, true, token)).build();
   }
 
   @GET
@@ -37,18 +37,18 @@ public class TrackController {
   public Response getTracksFromPlaylist(@PathParam("playlistId") int playlistId, @QueryParam("token") String token) {
     if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
 
-    return Response.status(200).entity(tracksDTO(playlistId, token)).build();
+    return Response.status(200).entity(tracksDTO(playlistId, false, token)).build();
   }
 
   @POST
-  @Path("/playlists/{id}/tracks")
+  @Path("/playlists/{playlistId}/tracks")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response addTrackToPlaylist(@PathParam("id") int playlistId, TrackDTO trackDTO, @QueryParam("token") String token) {
+  public Response addTrackToPlaylist(@PathParam("playlistId") int playlistId, TrackDTO trackDTO, @QueryParam("token") String token) {
     if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
 
     trackDAO.addTrackToPlaylist(playlistId, trackDTO.id, trackDTO.offlineAvailable);
-    return Response.status(201).entity(tracksDTO(playlistId, token)).build();
+    return Response.status(201).entity(tracksDTO(playlistId, false, token)).build();
   }
 
   @DELETE
@@ -58,11 +58,11 @@ public class TrackController {
     if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
 
     trackDAO.deleteTrack(playlistId, trackId);
-    return Response.status(200).entity(tracksDTO(playlistId, token)).build();
+    return Response.status(200).entity(tracksDTO(playlistId, false, token)).build();
   }
 
-  public TracksDTO tracksDTO(int forPlaylist, String token) {
-    List<Track> tracks = trackDAO.getAllTracks(forPlaylist, token);
+  public TracksDTO tracksDTO(int forPlaylist, boolean toggler, String token) {
+    List<Track> tracks = trackDAO.getAllTracks(forPlaylist, toggler, token);
     TracksDTO tracksDTO = new TracksDTO();
     tracksDTO.tracks = new ArrayList<>();
 

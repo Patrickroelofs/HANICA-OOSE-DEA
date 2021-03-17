@@ -19,9 +19,14 @@ public class TrackDAO implements ITrackDAO {
     DataSource dataSource;
 
     @Override
-    public List<Track> getAllTracks(int forPlaylist, String token) {
+    public List<Track> getAllTracks(int forPlaylist, boolean toggler, String token) {
         try(Connection connection = dataSource.getConnection()) {
-            String sql = "SELECT * FROM tracks LEFT JOIN playlists_tracks ON tracks.id = playlists_tracks.trackId WHERE playlists_tracks.playlistId = ?";
+            String sql;
+            if(toggler) {
+                sql = "SELECT * FROM tracks LEFT JOIN playlists_tracks pt on tracks.id = pt.trackId WHERE tracks.id NOT IN (SELECT trackId FROM playlists_tracks WHERE pt.playlistId = ?)";
+            } else {
+                sql = "SELECT * FROM tracks LEFT JOIN playlists_tracks pt ON tracks.id = pt.trackId WHERE pt.playlistId = ?";
+            }
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, forPlaylist);
             ResultSet rs = preparedStatement.executeQuery();
@@ -66,7 +71,7 @@ public class TrackDAO implements ITrackDAO {
     @Override
     public void addTrackToPlaylist(int playlistId, int trackId, boolean offlineAvailable) {
         try(Connection connection = dataSource.getConnection()) {
-            String sql = "INSERT INTO playlists_tracks (id, playlistid, trackid) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO playlists_tracks (playlistId, trackId, offlineAvailable) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, playlistId);
             preparedStatement.setInt(2, trackId);
