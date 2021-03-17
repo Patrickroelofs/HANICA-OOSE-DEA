@@ -18,8 +18,12 @@ public class TrackDAO implements ITrackDAO {
     @Resource(name = "jdbc/spotitube")
     DataSource dataSource;
 
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     @Override
-    public List<Track> getAllTracks(int forPlaylist, boolean toggler, String token) {
+    public List<Track> getAllTracks(int forPlaylist, boolean toggler) {
         try(Connection connection = dataSource.getConnection()) {
             String sql;
             if(toggler) {

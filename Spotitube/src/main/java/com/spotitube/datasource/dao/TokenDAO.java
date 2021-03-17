@@ -17,6 +17,10 @@ public class TokenDAO implements ITokenDAO {
   @Resource(name = "jdbc/spotitube")
   DataSource dataSource;
 
+  public void setDataSource(DataSource dataSource) {
+    this.dataSource = dataSource;
+  }
+
   @Override
   public TokenDTO insert(String username) {
 

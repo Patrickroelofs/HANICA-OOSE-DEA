@@ -15,10 +15,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: Use interfaces instead of direct classes in controllers
 public class PlaylistDAO implements IPlaylistDAO {
 
   @Resource(name = "jdbc/spotitube")
   DataSource dataSource;
+
+  public void setDataSource(DataSource dataSource) {
+    this.dataSource = dataSource;
+  }
 
   @Override
   public void addPlaylist(String playlistName, String username, String token) {

@@ -11,6 +11,16 @@ public class Track {
     private String description;
     private boolean offlineAvailable;
 
+    public Track() {
+
+    }
+
+    public Track(int id, String title, String performer) {
+        this.id = id;
+        this.title = title;
+        this.performer = performer;
+    }
+
     public int getId() {
         return id;
     }

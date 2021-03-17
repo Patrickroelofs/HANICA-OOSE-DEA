@@ -24,7 +24,7 @@ public class UserController {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response login(UserDTO userDTO) {
-    if(userDAO.verifyUser(userDTO)) {
+    if(userDAO.verifyUser(userDTO.user, userDTO.password)) {
       TokenDTO tokenDTO = tokenDAO.insert(userDTO.user);
 
       return Response.status(Response.Status.OK).entity(tokenDTO).build();
