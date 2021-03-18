@@ -1,6 +1,9 @@
 package com.spotitube.controller;
 
 import com.spotitube.controller.dto.TrackDTO;
+import com.spotitube.datasource.ITokenDAO;
+import com.spotitube.datasource.ITrackDAO;
+import com.spotitube.datasource.IUserDAO;
 import com.spotitube.mapper.DataMapper;
 import com.spotitube.datasource.dao.TokenDAO;
 import com.spotitube.datasource.dao.TrackDAO;
@@ -13,13 +16,8 @@ import javax.ws.rs.core.Response;
 @Path("/")
 public class TrackController {
 
-  @Inject
-  private TokenDAO tokenDAO;
-
-  @Inject
-  private TrackDAO trackDAO;
-
-  @Inject
+  private ITokenDAO tokenDAO;
+  private ITrackDAO trackDAO;
   private DataMapper dataMapper;
 
   @GET
@@ -59,5 +57,20 @@ public class TrackController {
 
     trackDAO.deleteTrack(playlistId, trackId);
     return Response.status(200).entity(dataMapper.mapTracksDTO(playlistId, false)).build();
+  }
+
+  @Inject
+  public void setTokenDAO(ITokenDAO tokenDAO) {
+    this.tokenDAO = tokenDAO;
+  }
+
+  @Inject
+  public void setTrackDAO(ITrackDAO trackDAO) {
+    this.trackDAO = trackDAO;
+  }
+
+  @Inject
+  public void setDataMapper(DataMapper dataMapper) {
+    this.dataMapper = dataMapper;
   }
 }

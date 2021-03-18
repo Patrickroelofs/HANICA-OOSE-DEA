@@ -1,9 +1,9 @@
 package com.spotitube.controller;
 
 import com.spotitube.controller.dto.PlaylistDTO;
+import com.spotitube.datasource.IPlaylistDAO;
+import com.spotitube.datasource.ITokenDAO;
 import com.spotitube.mapper.DataMapper;
-import com.spotitube.datasource.dao.PlaylistDAO;
-import com.spotitube.datasource.dao.TokenDAO;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -12,14 +12,8 @@ import javax.ws.rs.core.Response;
 
 @Path("/")
 public class PlaylistController {
-
-  @Inject
-  TokenDAO tokenDAO;
-
-  @Inject
-  PlaylistDAO playlistDAO;
-
-  @Inject
+  ITokenDAO tokenDAO;
+  IPlaylistDAO playlistDAO;
   DataMapper dataMapper;
 
   @GET
@@ -39,7 +33,7 @@ public class PlaylistController {
     if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
 
     playlistDAO.editPlaylist(playlistDTO.name, playlistDTO.id);
-    return Response.status(200).entity(dataMapper.mapPlaylistDTO(token)).build();
+    return Response.status(Response.Status.OK).entity(dataMapper.mapPlaylistDTO(token)).build();
   }
 
   @DELETE
@@ -61,5 +55,20 @@ public class PlaylistController {
 
     playlistDAO.addPlaylist(playlistDTO.name, tokenDAO.getUsername(token));
     return Response.status(Response.Status.OK).entity(dataMapper.mapPlaylistDTO(token)).build();
+  }
+
+  @Inject
+  public void setTokenDAO(ITokenDAO tokenDAO) {
+    this.tokenDAO = tokenDAO;
+  }
+
+  @Inject
+  public void setPlaylistDAO(IPlaylistDAO playlistDAO) {
+    this.playlistDAO = playlistDAO;
+  }
+
+  @Inject
+  public void setDataMapper(DataMapper dataMapper) {
+    this.dataMapper = dataMapper;
   }
 }

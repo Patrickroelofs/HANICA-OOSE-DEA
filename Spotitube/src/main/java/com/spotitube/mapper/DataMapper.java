@@ -19,7 +19,7 @@ public class DataMapper {
     TrackDAO trackDAO;
 
     public PlaylistsDTO mapPlaylistDTO(String token) {
-        List<Playlist> playlists = playlistDAO.getAllPlaylists(token);
+        ArrayList<Playlist> playlists = playlistDAO.getAllPlaylists(token);
         PlaylistsDTO playlistsDTO = new PlaylistsDTO();
         playlistsDTO.playlists = new ArrayList<>();
 
@@ -38,7 +38,7 @@ public class DataMapper {
     }
 
     public TracksDTO mapTracksDTO(int forPlaylist, boolean toggler) {
-        List<Track> tracks = trackDAO.getAllTracks(forPlaylist, toggler);
+        ArrayList<Track> tracks = trackDAO.getAllTracks(forPlaylist, toggler);
         TracksDTO tracksDTO = new TracksDTO();
         tracksDTO.tracks = new ArrayList<>();
 

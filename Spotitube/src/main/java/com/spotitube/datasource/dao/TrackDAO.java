@@ -23,7 +23,7 @@ public class TrackDAO implements ITrackDAO {
     }
 
     @Override
-    public List<Track> getAllTracks(int forPlaylist, boolean toggler) {
+    public ArrayList<Track> getAllTracks(int forPlaylist, boolean toggler) {
         try(Connection connection = dataSource.getConnection()) {
             String sql;
             if(toggler) {
@@ -35,7 +35,7 @@ public class TrackDAO implements ITrackDAO {
             preparedStatement.setInt(1, forPlaylist);
             ResultSet rs = preparedStatement.executeQuery();
 
-            List<Track> tracks = new ArrayList<>();
+            ArrayList<Track> tracks = new ArrayList<>();
 
             while(rs.next()) {
                 Track track = new Track();

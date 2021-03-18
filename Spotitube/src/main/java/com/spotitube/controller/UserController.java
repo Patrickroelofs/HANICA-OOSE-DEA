@@ -1,11 +1,9 @@
 package com.spotitube.controller;
 
-import com.spotitube.controller.dto.TokenDTO;
 import com.spotitube.controller.dto.UserDTO;
-import com.spotitube.datasource.dao.TokenDAO;
-import com.spotitube.datasource.dao.UserDAO;
+import com.spotitube.datasource.ITokenDAO;
+import com.spotitube.datasource.IUserDAO;
 import com.spotitube.domain.Token;
-
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -14,11 +12,8 @@ import javax.ws.rs.core.Response;
 @Path("/")
 public class UserController {
 
-  @Inject
-  private UserDAO userDAO;
-
-  @Inject
-  private TokenDAO tokenDAO;
+  private IUserDAO userDAO;
+  private ITokenDAO tokenDAO;
 
   @POST
   @Path("/login")
@@ -32,5 +27,15 @@ public class UserController {
     } else {
       return Response.status(Response.Status.FORBIDDEN).build();
     }
+  }
+
+  @Inject
+  public void setUserDAO(IUserDAO userDAO) {
+    this.userDAO = userDAO;
+  }
+
+  @Inject
+  public void setTokenDAO(ITokenDAO tokenDAO) {
+    this.tokenDAO = tokenDAO;
   }
 }
