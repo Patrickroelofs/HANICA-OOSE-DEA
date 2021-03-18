@@ -1,4 +1,4 @@
-package com.spotitube.datamapper;
+package com.spotitube.mapper;
 
 import com.spotitube.controller.dto.*;
 import com.spotitube.datasource.dao.PlaylistDAO;

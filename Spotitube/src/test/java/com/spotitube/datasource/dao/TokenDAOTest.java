@@ -93,10 +93,22 @@ public class TokenDAOTest {
     public void getUsernameTest() {
         try {
             // ARRANGE
+            String sql = "SELECT username FROM users WHERE token = ?";
+
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
+            when(preparedStatement.executeQuery()).thenReturn(resultSet);
+            when(resultSet.next()).thenReturn(true);
+            when(resultSet.getString(1)).thenReturn(USERNAME);
 
             // ACT
+            String test = tokenDAO.getUsername(TOKEN);
 
             // ASSERT
+            verify(connection).prepareStatement(sql);
+            verify(preparedStatement).setString(1, TOKEN);
+
+            assertEquals(USERNAME, test);
 
 
         } catch (Exception e) {

@@ -1,7 +1,7 @@
 package com.spotitube.controller;
 
 import com.spotitube.controller.dto.PlaylistDTO;
-import com.spotitube.datamapper.DataMapper;
+import com.spotitube.mapper.DataMapper;
 import com.spotitube.datasource.dao.PlaylistDAO;
 import com.spotitube.datasource.dao.TokenDAO;
 
@@ -38,7 +38,7 @@ public class PlaylistController {
   public Response editPlaylist(PlaylistDTO playlistDTO, @QueryParam("token") String token) {
     if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
 
-    playlistDAO.editPlaylist(playlistDTO.name, playlistDTO.id, token);
+    playlistDAO.editPlaylist(playlistDTO.name, playlistDTO.id);
     return Response.status(200).entity(dataMapper.mapPlaylistDTO(token)).build();
   }
 
@@ -59,7 +59,7 @@ public class PlaylistController {
   public Response addPlaylist(PlaylistDTO playlistDTO, @QueryParam("token") String token) {
     if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
 
-    playlistDAO.addPlaylist(playlistDTO.name, tokenDAO.getUsername(token), token);
+    playlistDAO.addPlaylist(playlistDTO.name, tokenDAO.getUsername(token));
     return Response.status(Response.Status.OK).entity(dataMapper.mapPlaylistDTO(token)).build();
   }
 }

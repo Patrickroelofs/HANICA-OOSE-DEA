@@ -1,7 +1,5 @@
 package com.spotitube.datasource.dao;
 
-import com.spotitube.controller.dto.PlaylistDTO;
-import com.spotitube.controller.dto.PlaylistsDTO;
 import com.spotitube.datasource.IPlaylistDAO;
 import com.spotitube.domain.Playlist;
 
@@ -13,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 // TODO: Use interfaces instead of direct classes in controllers
 public class PlaylistDAO implements IPlaylistDAO {
@@ -26,7 +23,7 @@ public class PlaylistDAO implements IPlaylistDAO {
   }
 
   @Override
-  public void addPlaylist(String playlistName, String username, String token) {
+  public boolean addPlaylist(String playlistName, String username) {
     try (Connection connection = dataSource.getConnection()) {
 
       String sql = "INSERT INTO playlists (name, owner) VALUES (?, ?)";
@@ -35,13 +32,16 @@ public class PlaylistDAO implements IPlaylistDAO {
       preparedStatement.setString(2, username);
       preparedStatement.executeUpdate();
 
+      return true;
+
     } catch (SQLException e) {
       throw new InternalServerErrorException(e);
     }
+
   }
 
   @Override
-  public List<Playlist> getAllPlaylists(String token) {
+  public ArrayList<Playlist> getAllPlaylists(String token) {
     try (Connection connection = dataSource.getConnection()) {
       String sql = "SELECT p.id, p.name, u.token, " +
               "(SELECT SUM(duration) FROM tracks INNER JOIN playlists_tracks pt on tracks.id = pt.trackId WHERE pt.playlistId = p.id) AS length FROM playlists p " +
@@ -50,7 +50,7 @@ public class PlaylistDAO implements IPlaylistDAO {
       PreparedStatement preparedStatement = connection.prepareStatement(sql);
       ResultSet resultSet = preparedStatement.executeQuery();
 
-      List<Playlist> playlists = new ArrayList<>();
+      ArrayList<Playlist> playlists = new ArrayList<>();
 
       while (resultSet.next()) {
         Playlist playlist = new Playlist();
@@ -68,20 +68,21 @@ public class PlaylistDAO implements IPlaylistDAO {
   }
 
   @Override
-  public void deletePlaylist(int id) {
+  public boolean deletePlaylist(int id) {
     try(Connection connection = dataSource.getConnection()) {
       String sql = "DELETE FROM playlists WHERE id = ?";
       PreparedStatement preparedStatement = connection.prepareStatement(sql);
       preparedStatement.setInt(1, id);
       preparedStatement.executeUpdate();
 
+      return true;
+
     } catch (SQLException e) {
       throw new InternalServerErrorException(e);
     }
   }
 
-  @Override
-  public void editPlaylist(String playlistName, int playlistId, String token) {
+  public boolean editPlaylist(String playlistName, int playlistId) {
     try(Connection connection = dataSource.getConnection()) {
       String sql = "UPDATE playlists set name = ? WHERE id = ?";
       PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -89,8 +90,11 @@ public class PlaylistDAO implements IPlaylistDAO {
       preparedStatement.setInt(2, playlistId);
       preparedStatement.executeUpdate();
 
+      return true;
+
     } catch (SQLException e) {
       throw new InternalServerErrorException(e);
     }
+
   }
 }

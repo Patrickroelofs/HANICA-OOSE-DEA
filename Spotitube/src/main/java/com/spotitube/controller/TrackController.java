@@ -1,7 +1,7 @@
 package com.spotitube.controller;
 
 import com.spotitube.controller.dto.TrackDTO;
-import com.spotitube.datamapper.DataMapper;
+import com.spotitube.mapper.DataMapper;
 import com.spotitube.datasource.dao.TokenDAO;
 import com.spotitube.datasource.dao.TrackDAO;
 

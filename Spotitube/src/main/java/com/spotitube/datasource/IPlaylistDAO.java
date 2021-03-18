@@ -1,17 +1,16 @@
 package com.spotitube.datasource;
 
-import com.spotitube.controller.dto.PlaylistDTO;
 import com.spotitube.domain.Playlist;
 
 import java.util.List;
 
 public interface IPlaylistDAO {
 
-    void addPlaylist(String playlistName, String username, String token);
+    boolean addPlaylist(String playlistName, String username);
 
     List<Playlist> getAllPlaylists(String token);
 
-    void deletePlaylist(int id);
+    boolean deletePlaylist(int id);
 
-    void editPlaylist(String name, int id, String token);
+    boolean editPlaylist(String name, int id);
 }
