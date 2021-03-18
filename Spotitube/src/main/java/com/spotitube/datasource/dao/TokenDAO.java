@@ -2,6 +2,7 @@ package com.spotitube.datasource.dao;
 
 import com.spotitube.controller.dto.TokenDTO;
 import com.spotitube.datasource.ITokenDAO;
+import com.spotitube.domain.Token;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -22,20 +23,18 @@ public class TokenDAO implements ITokenDAO {
   }
 
   @Override
-  public TokenDTO insert(String username) {
+  public Token insert(String username) {
 
-    TokenDTO tokenDTO = new TokenDTO();
-    tokenDTO.token = UUID.randomUUID().toString();
-    tokenDTO.user = username;
+    Token token = new Token(username);
 
     try (Connection connection = dataSource.getConnection()) {
       String sql = "UPDATE users SET token = ? WHERE username = ?";
       PreparedStatement preparedStatement = connection.prepareStatement(sql);
-      preparedStatement.setString(1, tokenDTO.token);
-      preparedStatement.setString(2, tokenDTO.user);
+      preparedStatement.setString(1, token.getToken());
+      preparedStatement.setString(2, token.getUser());
       preparedStatement.executeUpdate();
 
-      return tokenDTO;
+      return token;
 
     } catch (SQLException e) {
       throw new InternalServerErrorException(e);

@@ -1,5 +1,6 @@
 package com.spotitube.datasource.dao;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
@@ -15,16 +16,28 @@ public class UserDAOTest {
     private final String USERNAME = "patrick";
     private final String PASSWORD = "112112";
 
-    DataSource dataSource = mock(DataSource.class);
-    Connection connection = mock(Connection.class);
-    PreparedStatement preparedStatement = mock(PreparedStatement.class);
-    ResultSet resultSet = mock(ResultSet.class);
+    private UserDAO userDAO;
+    private DataSource dataSource;
+    private Connection connection;
+    private PreparedStatement preparedStatement;
+    private ResultSet resultSet;
 
-    UserDAO userDAO = new UserDAO();
+
+    @BeforeEach
+    public void setup() {
+        dataSource = mock(DataSource.class);
+        connection = mock(Connection.class);
+        preparedStatement = mock(PreparedStatement.class);
+        resultSet = mock(ResultSet.class);
+
+        userDAO = new UserDAO();
+        userDAO.setDataSource(dataSource);
+    }
 
     @Test
     public void loginWithValidUsernameAndPassword() {
         try {
+            // ARRANGE
             String expectedSQL = "SELECT * FROM users WHERE username = ? AND password = ?";
 
             when(dataSource.getConnection()).thenReturn(connection);
@@ -34,8 +47,10 @@ public class UserDAOTest {
 
             userDAO.setDataSource(dataSource);
 
+            // ACT
             boolean verified = userDAO.verifyUser(USERNAME, PASSWORD);
 
+            // ASSERT
             verify(connection).prepareStatement(expectedSQL);
             verify(preparedStatement).setString(1, USERNAME);
             verify(preparedStatement).setString(2, PASSWORD);

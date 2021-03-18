@@ -4,6 +4,7 @@ import com.spotitube.controller.dto.TokenDTO;
 import com.spotitube.controller.dto.UserDTO;
 import com.spotitube.datasource.dao.TokenDAO;
 import com.spotitube.datasource.dao.UserDAO;
+import com.spotitube.domain.Token;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -25,9 +26,9 @@ public class UserController {
   @Produces(MediaType.APPLICATION_JSON)
   public Response login(UserDTO userDTO) {
     if(userDAO.verifyUser(userDTO.user, userDTO.password)) {
-      TokenDTO tokenDTO = tokenDAO.insert(userDTO.user);
+      Token token = tokenDAO.insert(userDTO.user);
 
-      return Response.status(Response.Status.OK).entity(tokenDTO).build();
+      return Response.status(Response.Status.OK).entity(token).build();
     } else {
       return Response.status(Response.Status.FORBIDDEN).build();
     }
