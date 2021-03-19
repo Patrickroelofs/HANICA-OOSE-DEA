@@ -1,6 +1,10 @@
 package com.spotitube.mapper;
 
 import com.spotitube.controller.dto.*;
+import com.spotitube.datasource.IPlaylistDAO;
+import com.spotitube.datasource.ITokenDAO;
+import com.spotitube.datasource.ITrackDAO;
+import com.spotitube.datasource.IUserDAO;
 import com.spotitube.datasource.dao.PlaylistDAO;
 import com.spotitube.datasource.dao.TrackDAO;
 import com.spotitube.domain.Playlist;
@@ -12,13 +16,10 @@ import java.util.List;
 
 public class DataMapper {
 
-    @Inject
-    PlaylistDAO playlistDAO;
+    IPlaylistDAO playlistDAO;
+    ITrackDAO trackDAO;
 
-    @Inject
-    TrackDAO trackDAO;
-
-    public PlaylistsDTO mapPlaylistDTO(String token) {
+    public PlaylistsDTO mapPlaylistToPlaylistsDTO(String token) {
         ArrayList<Playlist> playlists = playlistDAO.getAllPlaylists(token);
         PlaylistsDTO playlistsDTO = new PlaylistsDTO();
         playlistsDTO.playlists = new ArrayList<>();
@@ -37,7 +38,7 @@ public class DataMapper {
         return playlistsDTO;
     }
 
-    public TracksDTO mapTracksDTO(int forPlaylist, boolean toggler) {
+    public TracksDTO mapTracksToTracksDTO(int forPlaylist, boolean toggler) {
         ArrayList<Track> tracks = trackDAO.getAllTracks(forPlaylist, toggler);
         TracksDTO tracksDTO = new TracksDTO();
         tracksDTO.tracks = new ArrayList<>();
@@ -57,5 +58,15 @@ public class DataMapper {
             tracksDTO.tracks.add(trackDTO);
         }
         return tracksDTO;
+    }
+
+    @Inject
+    public void setPlaylistDAO(IPlaylistDAO PlaylistDAO) {
+        this.playlistDAO = PlaylistDAO;
+    }
+
+    @Inject
+    public void setTrackDAO(ITrackDAO trackDAO) {
+        this.trackDAO = trackDAO;
     }
 }

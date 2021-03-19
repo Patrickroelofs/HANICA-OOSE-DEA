@@ -7,9 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import javax.sql.DataSource;
+import javax.ws.rs.InternalServerErrorException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,6 +31,7 @@ public class PlaylistDAOTest {
     private String TOKEN = "111-111-111";
     private String PLAYLIST_NAME = "Playlist1";
     private int PLAYLIST_ID = 1;
+    private String USERNAME = "patrick";
 
     private Playlist expectedPlaylist = new Playlist();
     private ArrayList<Playlist> expectedPlaylists = new ArrayList<>();
@@ -84,27 +87,61 @@ public class PlaylistDAOTest {
     }
 
     @Test
+    public void getAllPlaylistsThrowsInternalServerErrorTest() {
+        try {
+            String sql = "SELECT p.id, p.name, u.token, " +
+                    "(SELECT SUM(duration) FROM tracks INNER JOIN playlists_tracks pt on tracks.id = pt.trackId WHERE pt.playlistId = p.id) AS length FROM playlists p " +
+                    "INNER JOIN users u on p.owner = u.username";
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
+            when(preparedStatement.executeQuery()).thenThrow(new SQLException());
+
+            assertThrows(InternalServerErrorException.class, () -> {
+                playlistDAO.getAllPlaylists(TOKEN);
+            });
+
+        } catch (Exception e) {
+            fail(e);
+        }
+    }
+
+    @Test
     public void addPlaylistTest() {
         try {
             String sql = "INSERT INTO playlists (name, owner) VALUES (?, ?)";
-            String expectedPlaylistName = "playlist1";
-            String expectedUsername = "patrick";
 
-            Playlist expectedPlaylist = new Playlist(expectedPlaylistName);
+            Playlist expectedPlaylist = new Playlist(PLAYLIST_NAME);
             expectedPlaylist.setTracks(expectedTracks);
 
             when(dataSource.getConnection()).thenReturn(connection);
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeUpdate()).thenReturn(1);
 
-            boolean createPlaylist = playlistDAO.addPlaylist(expectedPlaylistName, expectedUsername);
+            boolean createPlaylist = playlistDAO.addPlaylist(PLAYLIST_NAME, USERNAME);
 
             verify(dataSource).getConnection();
             verify(connection).prepareStatement(sql);
-            verify(preparedStatement).setString(1, expectedPlaylistName);
-            verify(preparedStatement).setString(2, expectedUsername);
+            verify(preparedStatement).setString(1, PLAYLIST_NAME);
+            verify(preparedStatement).setString(2, USERNAME);
 
             assertTrue(createPlaylist);
+
+        } catch (Exception e) {
+            fail(e);
+        }
+    }
+
+    @Test
+    public void addPlaylistThrowsInternalServerErrorTest() {
+        try {
+            String sql = "INSERT INTO playlists (name, owner) VALUES (?, ?)";
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
+            when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
+
+            assertThrows(InternalServerErrorException.class, () -> {
+                playlistDAO.addPlaylist(PLAYLIST_NAME, USERNAME);
+            });
 
         } catch (Exception e) {
             fail(e);
@@ -136,6 +173,23 @@ public class PlaylistDAOTest {
     }
 
     @Test
+    public void deletePlaylistThrowsInternalServerErrorTest() {
+        try {
+            String sql = "DELETE FROM playlists WHERE id = ?";
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
+            when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
+
+            assertThrows(InternalServerErrorException.class, () -> {
+                playlistDAO.deletePlaylist(PLAYLIST_ID);
+            });
+
+        } catch (Exception e) {
+            fail(e);
+        }
+    }
+
+    @Test
     public void editPlaylistTest() {
         try {
             String sql = "UPDATE playlists set name = ? WHERE id = ?";
@@ -162,6 +216,23 @@ public class PlaylistDAOTest {
             verify(preparedStatement).setInt(2, expectedId);
 
             assertTrue(editPlaylist);
+
+        } catch (Exception e) {
+            fail(e);
+        }
+    }
+
+    @Test
+    public void editPlaylistThrowsInternalServerErrorTest() {
+        try {
+            String sql = "UPDATE playlists set name = ? WHERE id = ?";
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
+            when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
+
+            assertThrows(InternalServerErrorException.class, () -> {
+                playlistDAO.editPlaylist(PLAYLIST_NAME, PLAYLIST_ID);
+            });
 
         } catch (Exception e) {
             fail(e);

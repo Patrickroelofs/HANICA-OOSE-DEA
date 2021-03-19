@@ -56,7 +56,7 @@ public class PlaylistControllerTest {
         playlists.add(playlist);
 
         when(tokenDAO.verify(TOKEN)).thenReturn(true);
-        when(dataMapper.mapPlaylistDTO(TOKEN)).thenReturn(playlistsDTO);
+        when(dataMapper.mapPlaylistToPlaylistsDTO(TOKEN)).thenReturn(playlistsDTO);
         when(playlistDAO.getAllPlaylists(TOKEN)).thenReturn(playlists);
 
         Response response = playlistController.getAllPlaylists(TOKEN);

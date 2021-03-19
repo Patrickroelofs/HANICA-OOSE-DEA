@@ -22,7 +22,7 @@ public class PlaylistController {
   public Response getAllPlaylists(@QueryParam("token") String token) {
     if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
 
-    return Response.status(Response.Status.OK).entity(dataMapper.mapPlaylistDTO(token)).build();
+    return Response.status(Response.Status.OK).entity(dataMapper.mapPlaylistToPlaylistsDTO(token)).build();
   }
 
   @PUT
@@ -33,7 +33,7 @@ public class PlaylistController {
     if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
 
     playlistDAO.editPlaylist(playlistDTO.name, playlistDTO.id);
-    return Response.status(Response.Status.OK).entity(dataMapper.mapPlaylistDTO(token)).build();
+    return Response.status(Response.Status.OK).entity(dataMapper.mapPlaylistToPlaylistsDTO(token)).build();
   }
 
   @DELETE
@@ -43,7 +43,7 @@ public class PlaylistController {
     if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
 
     playlistDAO.deletePlaylist(id);
-    return Response.status(Response.Status.OK).entity(dataMapper.mapPlaylistDTO(token)).build();
+    return Response.status(Response.Status.OK).entity(dataMapper.mapPlaylistToPlaylistsDTO(token)).build();
   }
 
   @POST
@@ -54,7 +54,7 @@ public class PlaylistController {
     if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
 
     playlistDAO.addPlaylist(playlistDTO.name, tokenDAO.getUsername(token));
-    return Response.status(Response.Status.OK).entity(dataMapper.mapPlaylistDTO(token)).build();
+    return Response.status(Response.Status.OK).entity(dataMapper.mapPlaylistToPlaylistsDTO(token)).build();
   }
 
   @Inject

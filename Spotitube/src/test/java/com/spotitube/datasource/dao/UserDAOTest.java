@@ -4,9 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
+import javax.ws.rs.InternalServerErrorException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -57,6 +59,22 @@ public class UserDAOTest {
 
             assertTrue(verified);
 
+        } catch (Exception e) {
+            fail(e);
+        }
+    }
+
+    @Test
+    public void loginWithValidUsernameAndPasswordThrowsInternalServerErrorTest() {
+        try {
+            String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
+            when(preparedStatement.executeQuery()).thenThrow(new SQLException());
+
+            assertThrows(InternalServerErrorException.class, () -> {
+                userDAO.verifyUser(USERNAME, PASSWORD);
+            });
         } catch (Exception e) {
             fail(e);
         }

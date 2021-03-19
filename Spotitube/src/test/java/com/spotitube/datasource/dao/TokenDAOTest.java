@@ -6,9 +6,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
+import javax.ws.rs.InternalServerErrorException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -64,6 +66,22 @@ public class TokenDAOTest {
     }
 
     @Test
+    public void createTokenThrowsInternalServerErrorTest() {
+        try {
+            String sql = "UPDATE users SET token = ? WHERE username = ?";
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
+            when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
+
+            assertThrows(InternalServerErrorException.class, () -> {
+                tokenDAO.insert(USERNAME);
+            });
+        } catch (Exception e) {
+            fail(e);
+        }
+    }
+
+    @Test
     public void verifyTokenTest() {
         try {
             // ARRANGE
@@ -84,6 +102,22 @@ public class TokenDAOTest {
             assertTrue(verified);
 
 
+        } catch (Exception e) {
+            fail(e);
+        }
+    }
+
+    @Test
+    public void verifyTokenThrowsInternalServerErrorTest() {
+        try {
+            String sql = "SELECT * FROM users WHERE token = ?";
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
+            when(preparedStatement.executeQuery()).thenThrow(new SQLException());
+
+            assertThrows(InternalServerErrorException.class, () -> {
+                tokenDAO.verify(TOKEN);
+            });
         } catch (Exception e) {
             fail(e);
         }
@@ -111,6 +145,45 @@ public class TokenDAOTest {
             assertEquals(USERNAME, test);
 
 
+        } catch (Exception e) {
+            fail(e);
+        }
+    }
+
+    @Test
+    public void getUsernameReturnsNull() {
+        try {
+            String sql = "SELECT username FROM users WHERE token = ?";
+
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
+            when(preparedStatement.executeQuery()).thenReturn(resultSet);
+            when(resultSet.next()).thenReturn(false);
+            when(resultSet.getString(1)).thenReturn(USERNAME);
+
+            String test = tokenDAO.getUsername(TOKEN);
+
+            verify(connection).prepareStatement(sql);
+            verify(preparedStatement).setString(1, TOKEN);
+
+            assertNull(test);
+
+        } catch (Exception e) {
+            fail(e);
+        }
+    }
+
+    @Test
+    public void getUsernameThrowsInternalServerErrorTest() {
+        try {
+            String sql = "SELECT username FROM users WHERE token = ?";
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
+            when(preparedStatement.executeQuery()).thenThrow(new SQLException());
+
+            assertThrows(InternalServerErrorException.class, () -> {
+                tokenDAO.getUsername(TOKEN);
+            });
         } catch (Exception e) {
             fail(e);
         }

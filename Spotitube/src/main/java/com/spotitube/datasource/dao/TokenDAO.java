@@ -23,7 +23,7 @@ public class TokenDAO implements ITokenDAO {
   }
 
   @Override
-  public Token insert(String username) {
+  public Token insert(String username) throws InternalServerErrorException {
 
     Token token = new Token(username);
 
@@ -42,7 +42,7 @@ public class TokenDAO implements ITokenDAO {
   }
 
   @Override
-  public boolean verify(String token) {
+  public boolean verify(String token) throws InternalServerErrorException {
 
     boolean result = false;
 
@@ -71,7 +71,7 @@ public class TokenDAO implements ITokenDAO {
       preparedStatement.setString(1, token);
       ResultSet resultSet = preparedStatement.executeQuery();
 
-      while(resultSet.next()) {
+      if(resultSet.next()) {
         return resultSet.getString(1);
       }
 
