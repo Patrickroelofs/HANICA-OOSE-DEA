@@ -1,6 +1,5 @@
 package com.spotitube.domain;
 
-//TODO: Use User domain when creating account (never use DTO other than moving into domain.user)
 public class User {
     private String user;
     private String password;

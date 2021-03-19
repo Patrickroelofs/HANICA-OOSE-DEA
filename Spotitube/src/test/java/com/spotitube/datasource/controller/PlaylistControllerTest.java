@@ -29,11 +29,6 @@ public class PlaylistControllerTest {
     @BeforeEach
     public void setup() {
         playlistController = new PlaylistController();
-    }
-
-    @Test
-    public void getAllPlaylistsTest() {
-        int statusCodeExpected = 200;
 
         playlistDAO = mock(PlaylistDAO.class);
         tokenDAO = mock(TokenDAO.class);
@@ -42,6 +37,11 @@ public class PlaylistControllerTest {
         playlistController.setPlaylistDAO(playlistDAO);
         playlistController.setTokenDAO(tokenDAO);
         playlistController.setDataMapper(dataMapper);
+    }
+
+    @Test
+    public void getAllPlaylistsTest() {
+        int statusCodeExpected = 200;
 
         PlaylistsDTO playlistsDTO = new PlaylistsDTO();
         PlaylistDTO playlistDTO = new PlaylistDTO();
@@ -68,14 +68,6 @@ public class PlaylistControllerTest {
     public void editPlaylistTest() {
         int statusCodeExpected = 200;
 
-        playlistDAO = mock(PlaylistDAO.class);
-        tokenDAO = mock(TokenDAO.class);
-        dataMapper = mock(DataMapper.class);
-
-        playlistController.setPlaylistDAO(playlistDAO);
-        playlistController.setTokenDAO(tokenDAO);
-        playlistController.setDataMapper(dataMapper);
-
         PlaylistDTO playlistDTO = new PlaylistDTO();
         playlistDTO.id = 1;
         playlistDTO.name = "Playlist1";
@@ -91,14 +83,6 @@ public class PlaylistControllerTest {
     @Test
     public void deletePlaylistTest() {
         int statusCodeExpected = 200;
-
-        playlistDAO = mock(PlaylistDAO.class);
-        tokenDAO = mock(TokenDAO.class);
-        dataMapper = mock(DataMapper.class);
-
-        playlistController.setPlaylistDAO(playlistDAO);
-        playlistController.setTokenDAO(tokenDAO);
-        playlistController.setDataMapper(dataMapper);
 
         PlaylistDTO playlistDTO = new PlaylistDTO();
         playlistDTO.id = 1;
@@ -116,14 +100,6 @@ public class PlaylistControllerTest {
     public void addPlaylistTest() {
         int statusCodeExpected = 200;
         String username = "patrick";
-
-        playlistDAO = mock(PlaylistDAO.class);
-        tokenDAO = mock(TokenDAO.class);
-        dataMapper = mock(DataMapper.class);
-
-        playlistController.setPlaylistDAO(playlistDAO);
-        playlistController.setTokenDAO(tokenDAO);
-        playlistController.setDataMapper(dataMapper);
 
         PlaylistDTO playlistDTO = new PlaylistDTO();
         playlistDTO.id = 1;

@@ -18,12 +18,8 @@ public class TrackDAO implements ITrackDAO {
     @Resource(name = "jdbc/spotitube")
     DataSource dataSource;
 
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
     @Override
-    public ArrayList<Track> getAllTracks(int forPlaylist, boolean toggler) {
+    public ArrayList<Track> getAllTracks(int forPlaylist, boolean toggler) throws InternalServerErrorException {
         try(Connection connection = dataSource.getConnection()) {
             String sql;
             if(toggler) {
@@ -33,21 +29,21 @@ public class TrackDAO implements ITrackDAO {
             }
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, forPlaylist);
-            ResultSet rs = preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             ArrayList<Track> tracks = new ArrayList<>();
 
-            while(rs.next()) {
+            while(resultSet.next()) {
                 Track track = new Track();
-                track.setId(rs.getInt("id"));
-                track.setTitle(rs.getString("title"));
-                track.setPerformer(rs.getString("performer"));
-                track.setDuration(rs.getInt("duration"));
-                track.setAlbum(rs.getString("album"));
-                track.setPlaycount(rs.getInt("playcount"));
-                track.setPublicationDate(rs.getString("publicationDate"));
-                track.setDescription(rs.getString("description"));
-                track.setOfflineAvailable(rs.getBoolean("offlineAvailable"));
+                track.setId(resultSet.getInt("id"));
+                track.setTitle(resultSet.getString("title"));
+                track.setPerformer(resultSet.getString("performer"));
+                track.setDuration(resultSet.getInt("duration"));
+                track.setAlbum(resultSet.getString("album"));
+                track.setPlaycount(resultSet.getInt("playcount"));
+                track.setPublicationDate(resultSet.getString("publicationDate"));
+                track.setDescription(resultSet.getString("description"));
+                track.setOfflineAvailable(resultSet.getBoolean("offlineAvailable"));
 
                 tracks.add(track);
             }
@@ -59,7 +55,7 @@ public class TrackDAO implements ITrackDAO {
     }
 
     @Override
-    public void deleteTrack(int playlistId, int trackId) {
+    public void deleteTrack(int playlistId, int trackId) throws InternalServerErrorException {
         try(Connection connection = dataSource.getConnection()) {
             String sql = "DELETE FROM playlists_tracks WHERE playlistId = ? AND trackId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -73,7 +69,7 @@ public class TrackDAO implements ITrackDAO {
     }
 
     @Override
-    public void addTrackToPlaylist(int playlistId, int trackId, boolean offlineAvailable) {
+    public void addTrackToPlaylist(int playlistId, int trackId, boolean offlineAvailable) throws InternalServerErrorException {
         try(Connection connection = dataSource.getConnection()) {
             String sql = "INSERT INTO playlists_tracks (playlistId, trackId, offlineAvailable) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -85,5 +81,9 @@ public class TrackDAO implements ITrackDAO {
         } catch (SQLException e) {
             throw new InternalServerErrorException(e);
         }
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 }

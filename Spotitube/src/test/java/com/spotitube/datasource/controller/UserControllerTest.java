@@ -19,6 +19,8 @@ public class UserControllerTest {
     private String PASSWORD = "112112";
     private UserController userController;
     private UserDTO userDTO;
+    private UserDAO userDAO;
+    private TokenDAO tokenDAO;
     
     @BeforeEach
     public void setup() {
@@ -27,6 +29,12 @@ public class UserControllerTest {
         userDTO = new UserDTO();
         userDTO.user = USERNAME;
         userDTO.password = PASSWORD;
+
+        userDAO = mock(UserDAO.class);
+        tokenDAO = mock(TokenDAO.class);
+
+        userController.setUserDAO(userDAO);
+        userController.setTokenDAO(tokenDAO);
     }
     
     @Test
@@ -38,12 +46,7 @@ public class UserControllerTest {
             user.setUser(USERNAME);
             user.setPassword(PASSWORD);
 
-            UserDAO userDAO = mock(UserDAO.class);
-            TokenDAO tokenDAO = mock(TokenDAO.class);
             when(userDAO.verifyUser(userDTO.user, userDTO.password)).thenReturn(true);
-
-            userController.setUserDAO(userDAO);
-            userController.setTokenDAO(tokenDAO);
 
             Response response = userController.login(userDTO);
 
@@ -63,12 +66,7 @@ public class UserControllerTest {
             user.setUser(USERNAME);
             user.setPassword(PASSWORD);
 
-            UserDAO userDAO = mock(UserDAO.class);
-            TokenDAO tokenDAO = mock(TokenDAO.class);
             when(userDAO.verifyUser(userDTO.user, userDTO.password)).thenReturn(false);
-
-            userController.setUserDAO(userDAO);
-            userController.setTokenDAO(tokenDAO);
 
             Response response = userController.login(userDTO);
 

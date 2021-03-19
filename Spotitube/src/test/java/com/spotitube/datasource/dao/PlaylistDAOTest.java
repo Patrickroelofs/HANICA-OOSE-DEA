@@ -26,6 +26,12 @@ public class PlaylistDAOTest {
     private Track expectedTrack1 = new Track(1, "Track 1", "Performer 1");
     private Track expectedTrack2 = new Track(2, "Track 2", "Performer 2");
 
+    private String TOKEN = "111-111-111";
+    private String PLAYLIST_NAME = "Playlist1";
+    private int PLAYLIST_ID = 1;
+
+    private Playlist expectedPlaylist = new Playlist();
+    private ArrayList<Playlist> expectedPlaylists = new ArrayList<>();
 
     @BeforeEach
     public void setup() {
@@ -38,6 +44,11 @@ public class PlaylistDAOTest {
         playlistDAO = new PlaylistDAO();
         playlistDAO.setDataSource(dataSource);
 
+        expectedPlaylist.setName(PLAYLIST_NAME);
+        expectedPlaylist.setId(PLAYLIST_ID);
+
+        expectedPlaylists.add(expectedPlaylist);
+
         expectedTrack1.setDuration(100);
         expectedTrack2.setDuration(100);
         expectedTracks.add(expectedTrack1);
@@ -47,7 +58,26 @@ public class PlaylistDAOTest {
     @Test
     public void getAllPlaylistsTest() {
         try {
-            // TODO: Get all playlists test
+            String sql = "SELECT p.id, p.name, u.token, " +
+                    "(SELECT SUM(duration) FROM tracks INNER JOIN playlists_tracks pt on tracks.id = pt.trackId WHERE pt.playlistId = p.id) AS length FROM playlists p " +
+                    "INNER JOIN users u on p.owner = u.username";
+
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
+            when(preparedStatement.executeQuery()).thenReturn(resultSet);
+            when(resultSet.next()).thenReturn(true).thenReturn(false);
+
+            when(resultSet.getInt("p.id")).thenReturn(PLAYLIST_ID);
+            when(resultSet.getString("p.name")).thenReturn(PLAYLIST_NAME);
+            when(resultSet.getString("u.token")).thenReturn(TOKEN);
+            when(resultSet.getInt("length")).thenReturn(100);
+
+            ArrayList<Playlist> playlistsResult = playlistDAO.getAllPlaylists(TOKEN);
+
+            verify(dataSource).getConnection();
+            verify(connection).prepareStatement(sql);
+
+            assertEquals(PLAYLIST_ID, playlistsResult.get(0).getId());
         } catch (Exception e) {
             fail(e);
         }
