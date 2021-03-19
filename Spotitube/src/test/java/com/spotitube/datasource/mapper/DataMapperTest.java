@@ -2,9 +2,12 @@ package com.spotitube.datasource.mapper;
 
 import com.spotitube.controller.dto.PlaylistDTO;
 import com.spotitube.controller.dto.PlaylistsDTO;
+import com.spotitube.controller.dto.TracksDTO;
 import com.spotitube.datasource.dao.PlaylistDAO;
+import com.spotitube.datasource.dao.TrackDAO;
 import com.spotitube.datasource.dao.UserDAO;
 import com.spotitube.domain.Playlist;
+import com.spotitube.domain.Track;
 import com.spotitube.mapper.DataMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,9 +31,24 @@ public class DataMapperTest {
     private int PLAYLIST_ID = 1;
     private String USERNAME = "patrick";
 
+    public int TRACK_ID = 1;
+    public String TRACK_TITLE = "Track Title";
+    public String TRACK_PERFORMER = "Performer";
+    public String PLAYLIST_TITLE = "PlaylistTitle";
+    public String PLAYLIST_PERFORMER = "PlaylistTitle";
+    public int PLAYLIST_DURATION = 100;
+    public String PLAYLIST_ALBUM = "PlaylistTitle";
+    public int PLAYLIST_PLAYCOUNT = 5;
+    public String PLAYLIST_PUBLICATIONDATE = "PlaylistTitle";
+    public String PLAYLIST_DESCRIPTION = "PlaylistTitle";
+    public boolean PLAYLIST_OFFLINEAVAILABLE = false;
+
+
     private UserDAO userDAO;
     private PlaylistDAO playlistDAO;
     private PlaylistDAO mockPlaylistDAO;
+    private TrackDAO trackDAO;
+    private TrackDAO mockTrackDAO;
     private DataMapper dataMapper;
     private DataSource dataSource;
     private Connection connection;
@@ -47,12 +65,16 @@ public class DataMapperTest {
 
         userDAO = new UserDAO();
         playlistDAO = new PlaylistDAO();
+        trackDAO = new TrackDAO();
         dataMapper = new DataMapper();
         mockPlaylistDAO = Mockito.spy(playlistDAO);
+        mockTrackDAO = Mockito.spy(trackDAO);
 
         userDAO.setDataSource(dataSource);
         playlistDAO.setDataSource(dataSource);
+        trackDAO.setDataSource(dataSource);
         dataMapper.setPlaylistDAO(playlistDAO);
+        dataMapper.setTrackDAO(trackDAO);
     }
 
     @Test
@@ -104,6 +126,38 @@ public class DataMapperTest {
 
             assertEquals(playlistsDTO.length, actual.length);
 
+        } catch (Exception e) {
+            fail(e);
+        }
+    }
+
+    @Test
+    public void mapTracksToTracksDTOTest() {
+        try {
+            String sql = "SELECT * FROM tracks LEFT JOIN playlists_tracks pt ON tracks.id = pt.trackId WHERE pt.playlistId = ?";
+
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
+            when(preparedStatement.executeQuery()).thenReturn(resultSet);
+            when(resultSet.next()).thenReturn(true).thenReturn(false);
+
+            when(resultSet.getInt("id")).thenReturn(PLAYLIST_ID);
+            when(resultSet.getString("title")).thenReturn(PLAYLIST_TITLE);
+            when(resultSet.getString("performer")).thenReturn(PLAYLIST_PERFORMER);
+            when(resultSet.getInt("duration")).thenReturn(PLAYLIST_DURATION);
+            when(resultSet.getString("album")).thenReturn(PLAYLIST_ALBUM);
+            when(resultSet.getInt("playcount")).thenReturn(PLAYLIST_PLAYCOUNT);
+            when(resultSet.getString("publicationDate")).thenReturn(PLAYLIST_PUBLICATIONDATE);
+            when(resultSet.getString("description")).thenReturn(PLAYLIST_DESCRIPTION);
+            when(resultSet.getBoolean("offlineAvailable")).thenReturn(PLAYLIST_OFFLINEAVAILABLE);
+
+            TracksDTO tracksResult = dataMapper.mapTracksToTracksDTO(PLAYLIST_ID, false);
+
+            verify(dataSource).getConnection();
+            verify(preparedStatement).setInt(1, PLAYLIST_ID);
+            verify(connection).prepareStatement(sql);
+
+            assertEquals(1, tracksResult.tracks.get(0).id);
         } catch (Exception e) {
             fail(e);
         }
