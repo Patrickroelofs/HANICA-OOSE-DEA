@@ -132,7 +132,7 @@ public class DataMapperTest {
     }
 
     @Test
-    public void mapTracksToTracksDTOTest() {
+    public void mapTracksToTracksDTOTestTogglerSetToTrue() {
         try {
             String sql = "SELECT * FROM tracks LEFT JOIN playlists_tracks pt ON tracks.id = pt.trackId WHERE pt.playlistId = ?";
 
@@ -152,6 +152,38 @@ public class DataMapperTest {
             when(resultSet.getBoolean("offlineAvailable")).thenReturn(PLAYLIST_OFFLINEAVAILABLE);
 
             TracksDTO tracksResult = dataMapper.mapTracksToTracksDTO(PLAYLIST_ID, true);
+
+            verify(dataSource).getConnection();
+            verify(preparedStatement).setInt(1, PLAYLIST_ID);
+            verify(connection).prepareStatement(sql);
+
+            assertEquals(1, tracksResult.tracks.get(0).id);
+        } catch (Exception e) {
+            fail(e);
+        }
+    }
+
+    @Test
+    public void mapTracksToTracksDTOTestTogglerSetToFalse() {
+        try {
+            String sql = "SELECT * FROM tracks LEFT JOIN playlists_tracks pt on tracks.id = pt.trackId WHERE tracks.id NOT IN (SELECT trackId FROM playlists_tracks WHERE pt.playlistId = ?)";
+
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
+            when(preparedStatement.executeQuery()).thenReturn(resultSet);
+            when(resultSet.next()).thenReturn(true).thenReturn(false);
+
+            when(resultSet.getInt("id")).thenReturn(PLAYLIST_ID);
+            when(resultSet.getString("title")).thenReturn(PLAYLIST_TITLE);
+            when(resultSet.getString("performer")).thenReturn(PLAYLIST_PERFORMER);
+            when(resultSet.getInt("duration")).thenReturn(PLAYLIST_DURATION);
+            when(resultSet.getString("album")).thenReturn(PLAYLIST_ALBUM);
+            when(resultSet.getInt("playcount")).thenReturn(PLAYLIST_PLAYCOUNT);
+            when(resultSet.getString("publicationDate")).thenReturn(PLAYLIST_PUBLICATIONDATE);
+            when(resultSet.getString("description")).thenReturn(PLAYLIST_DESCRIPTION);
+            when(resultSet.getBoolean("offlineAvailable")).thenReturn(PLAYLIST_OFFLINEAVAILABLE);
+
+            TracksDTO tracksResult = dataMapper.mapTracksToTracksDTO(PLAYLIST_ID, false);
 
             verify(dataSource).getConnection();
             verify(preparedStatement).setInt(1, PLAYLIST_ID);
