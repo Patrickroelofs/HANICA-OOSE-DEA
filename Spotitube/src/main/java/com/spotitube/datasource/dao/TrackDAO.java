@@ -19,14 +19,40 @@ public class TrackDAO implements ITrackDAO {
     DataSource dataSource;
 
     @Override
-    public ArrayList<Track> getAllTracks(int forPlaylist, boolean toggler) throws InternalServerErrorException {
+    public ArrayList<Track> getAllTracksNotInPlaylist(int forPlaylist) throws InternalServerErrorException {
         try(Connection connection = dataSource.getConnection()) {
-            String sql;
-            if(toggler) {
-                sql = "SELECT * FROM tracks LEFT JOIN playlists_tracks pt on tracks.id = pt.trackId WHERE tracks.id NOT IN (SELECT trackId FROM playlists_tracks WHERE pt.playlistId = ?)";
-            } else {
-                sql = "SELECT * FROM tracks LEFT JOIN playlists_tracks pt ON tracks.id = pt.trackId WHERE pt.playlistId = ?";
+            String sql = "SELECT * FROM tracks LEFT JOIN playlists_tracks pt on tracks.id = pt.trackId WHERE tracks.id NOT IN (SELECT trackId FROM playlists_tracks WHERE pt.playlistId = ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, forPlaylist);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            ArrayList<Track> tracks = new ArrayList<>();
+
+            while(resultSet.next()) {
+                Track track = new Track();
+                track.setId(resultSet.getInt("id"));
+                track.setTitle(resultSet.getString("title"));
+                track.setPerformer(resultSet.getString("performer"));
+                track.setDuration(resultSet.getInt("duration"));
+                track.setAlbum(resultSet.getString("album"));
+                track.setPlaycount(resultSet.getInt("playcount"));
+                track.setPublicationDate(resultSet.getString("publicationDate"));
+                track.setDescription(resultSet.getString("description"));
+                track.setOfflineAvailable(resultSet.getBoolean("offlineAvailable"));
+
+                tracks.add(track);
             }
+
+            return tracks;
+        } catch (SQLException e) {
+            throw new InternalServerErrorException(e);
+        }
+    }
+
+    @Override
+    public ArrayList<Track> getAllTracks(int forPlaylist) throws InternalServerErrorException {
+        try(Connection connection = dataSource.getConnection()) {
+            String sql = "SELECT * FROM tracks LEFT JOIN playlists_tracks pt ON tracks.id = pt.trackId WHERE pt.playlistId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, forPlaylist);
             ResultSet resultSet = preparedStatement.executeQuery();

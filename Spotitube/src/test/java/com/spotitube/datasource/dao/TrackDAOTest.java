@@ -67,7 +67,7 @@ public class TrackDAOTest {
             when(resultSet.getString("description")).thenReturn(PLAYLIST_DESCRIPTION);
             when(resultSet.getBoolean("offlineAvailable")).thenReturn(PLAYLIST_OFFLINEAVAILABLE);
 
-            ArrayList<Track> tracksResult = trackDAO.getAllTracks(PLAYLIST_ID, false);
+            ArrayList<Track> tracksResult = trackDAO.getAllTracks(PLAYLIST_ID);
 
             verify(dataSource).getConnection();
             verify(preparedStatement).setInt(1, PLAYLIST_ID);
@@ -100,7 +100,7 @@ public class TrackDAOTest {
             when(resultSet.getString("description")).thenReturn(PLAYLIST_DESCRIPTION);
             when(resultSet.getBoolean("offlineAvailable")).thenReturn(PLAYLIST_OFFLINEAVAILABLE);
 
-            ArrayList<Track> tracksResult = trackDAO.getAllTracks(PLAYLIST_ID, true);
+            ArrayList<Track> tracksResult = trackDAO.getAllTracksNotInPlaylist(PLAYLIST_ID);
 
             verify(dataSource).getConnection();
             verify(preparedStatement).setInt(1, PLAYLIST_ID);
@@ -124,7 +124,26 @@ public class TrackDAOTest {
             when(resultSet.next()).thenThrow(new SQLException());
 
             assertThrows(InternalServerErrorException.class, () -> {
-                trackDAO.getAllTracks(PLAYLIST_ID, false);
+                trackDAO.getAllTracks(PLAYLIST_ID);
+            });
+
+        } catch (Exception e) {
+            fail(e);
+        }
+    }
+
+    @Test
+    public void getAllTracksNotInPlaylistThrowsInternalServerErrorTest() {
+        try {
+            String sql = "SELECT * FROM tracks LEFT JOIN playlists_tracks pt on tracks.id = pt.trackId WHERE tracks.id NOT IN (SELECT trackId FROM playlists_tracks WHERE pt.playlistId = ?)";
+
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
+            when(preparedStatement.executeQuery()).thenReturn(resultSet);
+            when(resultSet.next()).thenThrow(new SQLException());
+
+            assertThrows(InternalServerErrorException.class, () -> {
+                trackDAO.getAllTracksNotInPlaylist(PLAYLIST_ID);
             });
 
         } catch (Exception e) {

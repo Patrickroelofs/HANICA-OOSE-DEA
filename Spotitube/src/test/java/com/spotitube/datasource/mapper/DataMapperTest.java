@@ -151,7 +151,7 @@ public class DataMapperTest {
             when(resultSet.getString("description")).thenReturn(PLAYLIST_DESCRIPTION);
             when(resultSet.getBoolean("offlineAvailable")).thenReturn(PLAYLIST_OFFLINEAVAILABLE);
 
-            TracksDTO tracksResult = dataMapper.mapTracksToTracksDTO(PLAYLIST_ID, false);
+            TracksDTO tracksResult = dataMapper.mapTracksToTracksDTO(PLAYLIST_ID, true);
 
             verify(dataSource).getConnection();
             verify(preparedStatement).setInt(1, PLAYLIST_ID);
