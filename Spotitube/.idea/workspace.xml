@@ -10,7 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bd94e4c-3310-4bdf-a8af-9029576de7f7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/sql/exampledata.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/exampledata.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documents/OPLEVERDOCUMENT IS README IN ROOT.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,7 +248,7 @@
       <workItem from="1616146035834" duration="8538000" />
       <workItem from="1616164645334" duration="13697000" />
       <workItem from="1616356352206" duration="1364000" />
-      <workItem from="1616402312323" duration="2611000" />
+      <workItem from="1616402312323" duration="2732000" />
     </task>
     <servers />
   </component>

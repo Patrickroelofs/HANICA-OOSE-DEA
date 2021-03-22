@@ -1,6 +1,14 @@
 # Spotitube JavaEE Application
 
-Patrick Roelofs - 584025 - 03-22-2021
+**Student**: Patrick Roelofs
+
+​	**Studentnummer**: 584025 
+
+​	**Laatste bewerking**: 03-22-2021
+
+
+
+**Docent**: Michel Portier
 
 ## Opdrachtomschrijving
 
