@@ -3,6 +3,7 @@ package com.spotitube.controller;
 import com.spotitube.controller.dto.PlaylistDTO;
 import com.spotitube.datasource.IPlaylistDAO;
 import com.spotitube.datasource.ITokenDAO;
+import com.spotitube.exceptions.UnauthorizedUserException;
 import com.spotitube.mapper.DataMapper;
 
 import javax.inject.Inject;
@@ -20,7 +21,7 @@ public class PlaylistController {
   @Path("/playlists")
   @Produces(MediaType.APPLICATION_JSON)
   public Response getAllPlaylists(@QueryParam("token") String token) {
-    if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
+    if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
     return Response.status(Response.Status.OK).entity(dataMapper.mapPlaylistToPlaylistsDTO(token)).build();
   }
@@ -30,7 +31,7 @@ public class PlaylistController {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response editPlaylist(PlaylistDTO playlistDTO, @QueryParam("token") String token) {
-    if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
+    if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
     playlistDAO.editPlaylist(playlistDTO.name, playlistDTO.id);
     return Response.status(Response.Status.OK).entity(dataMapper.mapPlaylistToPlaylistsDTO(token)).build();
@@ -40,7 +41,7 @@ public class PlaylistController {
   @Path("/playlists/{id}")
   @Produces(MediaType.APPLICATION_JSON)
   public Response deletePlaylist(@PathParam("id") int id, @QueryParam("token") String token) {
-    if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
+    if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
     playlistDAO.deletePlaylist(id);
     return Response.status(Response.Status.OK).entity(dataMapper.mapPlaylistToPlaylistsDTO(token)).build();
@@ -51,7 +52,7 @@ public class PlaylistController {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response addPlaylist(PlaylistDTO playlistDTO, @QueryParam("token") String token) {
-    if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
+    if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
     playlistDAO.addPlaylist(playlistDTO.name, tokenDAO.getUsername(token));
     return Response.status(Response.Status.OK).entity(dataMapper.mapPlaylistToPlaylistsDTO(token)).build();

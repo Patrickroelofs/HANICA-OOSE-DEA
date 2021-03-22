@@ -1,6 +1,22 @@
-# Build
-mvn clean package && docker build -t org.patrickroelofs/Spotitube .
+# Spotitube JavaEE Application
 
-# RUN
+Patrick Roelofs - 584025 - 03-22-2021
 
-docker rm -f Spotitube || true && docker run -d -p 8080:8080 -p 4848:4848 --name Spotitube org.patrickroelofs/Spotitube 
+## Opdrachtomschrijving
+
+
+
+
+
+## Package diagram
+
+
+
+
+
+## Deployment Diagram
+
+
+
+
+

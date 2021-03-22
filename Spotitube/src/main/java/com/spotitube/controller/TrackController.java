@@ -3,6 +3,7 @@ package com.spotitube.controller;
 import com.spotitube.controller.dto.TrackDTO;
 import com.spotitube.datasource.ITokenDAO;
 import com.spotitube.datasource.ITrackDAO;
+import com.spotitube.exceptions.UnauthorizedUserException;
 import com.spotitube.mapper.DataMapper;
 
 import javax.inject.Inject;
@@ -21,7 +22,7 @@ public class TrackController {
   @Path("/tracks")
   @Produces(MediaType.APPLICATION_JSON)
   public Response getAllTracks(@QueryParam("forPlaylist") int playlistId, @QueryParam("token") String token) {
-    if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
+    if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
     return Response.status(200).entity(dataMapper.mapTracksToTracksDTO(playlistId, true)).build();
   }
@@ -30,7 +31,7 @@ public class TrackController {
   @Path("/playlists/{playlistId}/tracks")
   @Produces(MediaType.APPLICATION_JSON)
   public Response getTracksFromPlaylist(@PathParam("playlistId") int playlistId, @QueryParam("token") String token) {
-    if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
+    if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
     return Response.status(200).entity(dataMapper.mapTracksToTracksDTO(playlistId, false)).build();
   }
@@ -40,7 +41,7 @@ public class TrackController {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   public Response addTrackToPlaylist(@PathParam("playlistId") int playlistId, TrackDTO trackDTO, @QueryParam("token") String token) {
-    if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
+    if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
     trackDAO.addTrackToPlaylist(playlistId, trackDTO.id, trackDTO.offlineAvailable);
     return Response.status(201).entity(dataMapper.mapTracksToTracksDTO(playlistId, false)).build();
@@ -50,7 +51,7 @@ public class TrackController {
   @Path("/playlists/{playlistid}/tracks/{trackid}")
   @Produces(MediaType.APPLICATION_JSON)
   public Response deleteTrackFromPlaylist(@PathParam("playlistid") int playlistId, @PathParam("trackid") int trackId, @QueryParam("token") String token) {
-    if(!tokenDAO.verify(token)) throw new ForbiddenException("Invalid Token");
+    if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
     trackDAO.deleteTrack(playlistId, trackId);
     return Response.status(200).entity(dataMapper.mapTracksToTracksDTO(playlistId, false)).build();

@@ -1,3 +1,11 @@
+GET http://localhost:8080/playlists/1/tracks
+
+###
+
+GET http://localhost/playlists/1/tracks
+
+###
+
 POST http://localhost:8080/login
 
 <> 2021-03-05T211310.404.html

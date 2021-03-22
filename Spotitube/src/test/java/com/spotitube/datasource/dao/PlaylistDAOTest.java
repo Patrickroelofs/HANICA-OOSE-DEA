@@ -19,6 +19,7 @@ import static org.mockito.Mockito.*;
 
 public class PlaylistDAOTest {
     private PlaylistDAO playlistDAO;
+    private TokenDAO tokenDAO;
     private DataSource dataSource;
     private Connection connection;
     private PreparedStatement preparedStatement;
@@ -46,6 +47,9 @@ public class PlaylistDAOTest {
 
         playlistDAO = new PlaylistDAO();
         playlistDAO.setDataSource(dataSource);
+
+        tokenDAO = new TokenDAO();
+        tokenDAO.setDataSource(dataSource);
 
         expectedPlaylist.setName(PLAYLIST_NAME);
         expectedPlaylist.setId(PLAYLIST_ID);

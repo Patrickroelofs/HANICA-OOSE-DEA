@@ -6,15 +6,18 @@ import com.spotitube.controller.dto.PlaylistsDTO;
 import com.spotitube.datasource.dao.PlaylistDAO;
 import com.spotitube.datasource.dao.TokenDAO;
 import com.spotitube.domain.Playlist;
+import com.spotitube.exceptions.UnauthorizedUserException;
 import com.spotitube.mapper.DataMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.core.Response;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -94,6 +97,19 @@ public class PlaylistControllerTest {
         Response response = playlistController.deletePlaylist(playlistDTO.id, TOKEN);
 
         assertEquals(statusCodeExpected, response.getStatus());
+    }
+
+    @Test
+    public void deletePlaylistThrowsUnauthorizedUserExceptionTest() {
+        PlaylistDTO playlistDTO = new PlaylistDTO();
+        playlistDTO.id = 1;
+        playlistDTO.name = "Playlist1";
+
+        when(tokenDAO.verify(TOKEN)).thenReturn(false);
+
+        assertThrows(UnauthorizedUserException.class, () -> {
+            playlistController.deletePlaylist(playlistDTO.id, TOKEN);
+        });
     }
 
     @Test

@@ -1,6 +1,7 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="TomEE 9.0.37" type="TomeeConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="TomEE 9.0.37" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+  <configuration default="false" name="TomEE 8.0.4" type="TomeeConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="TomEE 8.0.4" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
     <option name="OPEN_IN_BROWSER" value="false" />
+    <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080" />
     <option name="UPDATING_POLICY" value="restart-server" />
     <deployment>
       <artifact name="Spotitube:war exploded">
@@ -81,10 +82,11 @@
       </SHUTDOWN>
     </ConfigurationWrapper>
     <method v="2">
-      <option name="Make" enabled="true" />
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="setup database &amp; insert data" run_configuration_type="DatabaseScript" />
       <option name="BuildArtifacts" enabled="true">
         <artifact name="Spotitube:war exploded" />
       </option>
+      <option name="Make" enabled="true" />
     </method>
   </configuration>
 </component>
