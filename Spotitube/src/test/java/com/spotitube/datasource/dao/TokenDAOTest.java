@@ -1,6 +1,7 @@
 package com.spotitube.datasource.dao;
 
 import com.spotitube.domain.Token;
+import com.spotitube.exceptions.SQLServerException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -72,7 +73,7 @@ public class TokenDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
 
-            assertThrows(InternalServerErrorException.class, () -> {
+            assertThrows(SQLServerException.class, () -> {
                 tokenDAO.insert(USERNAME);
             });
         } catch (Exception e) {
@@ -114,7 +115,7 @@ public class TokenDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeQuery()).thenThrow(new SQLException());
 
-            assertThrows(InternalServerErrorException.class, () -> {
+            assertThrows(SQLServerException.class, () -> {
                 tokenDAO.verify(TOKEN);
             });
         } catch (Exception e) {
@@ -180,7 +181,7 @@ public class TokenDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeQuery()).thenThrow(new SQLException());
 
-            assertThrows(InternalServerErrorException.class, () -> {
+            assertThrows(SQLServerException.class, () -> {
                 tokenDAO.getUsername(TOKEN);
             });
         } catch (Exception e) {

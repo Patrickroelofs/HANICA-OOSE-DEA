@@ -2,6 +2,7 @@ package com.spotitube.datasource.dao;
 
 import com.spotitube.datasource.ITrackDAO;
 import com.spotitube.domain.Track;
+import com.spotitube.exceptions.SQLServerException;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -45,7 +46,7 @@ public class TrackDAO implements ITrackDAO {
 
             return tracks;
         } catch (SQLException e) {
-            throw new InternalServerErrorException(e);
+            throw new SQLServerException(e);
         }
     }
 
@@ -76,7 +77,7 @@ public class TrackDAO implements ITrackDAO {
 
             return tracks;
         } catch (SQLException e) {
-            throw new InternalServerErrorException(e);
+            throw new SQLServerException(e);
         }
     }
 
@@ -90,7 +91,7 @@ public class TrackDAO implements ITrackDAO {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            throw new InternalServerErrorException(e);
+            throw new SQLServerException(e);
         }
     }
 
@@ -105,7 +106,7 @@ public class TrackDAO implements ITrackDAO {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            throw new InternalServerErrorException(e);
+            throw new SQLServerException(e);
         }
     }
 

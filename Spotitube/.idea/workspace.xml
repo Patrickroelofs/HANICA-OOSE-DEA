@@ -10,7 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bd94e4c-3310-4bdf-a8af-9029576de7f7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/mapper/DataMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/mapper/DataMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/exceptions/SQLServerException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/PlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/PlaylistDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/TokenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/TokenDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/TrackDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/TrackDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/service/TrackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/service/TrackService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/PlaylistDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/PlaylistDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/TokenDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/TokenDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/TrackDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/TrackDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/UserDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/UserDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/mapper/DataMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/mapper/DataMapperTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +120,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="TomEE Server.TomEE 8.0.4">
+  <component name="RunManager" selected="JUnit.TESTS">
     <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
       <option name="adminPort" value="8005" />
       <option name="contextPath" />
@@ -135,79 +147,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in Spotitube" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Spotitube" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DataMapperTest.mapTracksToTracksDTOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Spotitube" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.spotitube.datasource.mapper.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.spotitube.datasource.mapper" />
-      <option name="MAIN_CLASS_NAME" value="com.spotitube.datasource.mapper.DataMapperTest" />
-      <option name="METHOD_NAME" value="mapTracksToTracksDTOTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PlaylistControllerTest.deletePlaylistThrowsUnauthorizedUserExceptionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Spotitube" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.spotitube.datasource.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.spotitube.datasource.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.spotitube.datasource.controller.PlaylistControllerTest" />
-      <option name="METHOD_NAME" value="deletePlaylistThrowsUnauthorizedUserExceptionTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PlaylistDAOTest.addPlaylistThrowsUnauthorizedUserExceptionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Spotitube" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.spotitube.datasource.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.spotitube.datasource.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.spotitube.datasource.dao.PlaylistDAOTest" />
-      <option name="METHOD_NAME" value="addPlaylistThrowsUnauthorizedUserExceptionTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Database Script.setup database &amp; insert data" />
       <item itemvalue="JUnit.TESTS" />
-      <item itemvalue="JUnit.DataMapperTest.mapTracksToTracksDTOTest" />
-      <item itemvalue="JUnit.PlaylistDAOTest.addPlaylistThrowsUnauthorizedUserExceptionTest" />
-      <item itemvalue="JUnit.PlaylistControllerTest.deletePlaylistThrowsUnauthorizedUserExceptionTest" />
-      <item itemvalue="JUnit.All in Spotitube" />
       <item itemvalue="TomEE Server.TomEE 8.0.4" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.All in Spotitube" />
-        <item itemvalue="JUnit.PlaylistControllerTest.deletePlaylistThrowsUnauthorizedUserExceptionTest" />
-        <item itemvalue="JUnit.PlaylistDAOTest.addPlaylistThrowsUnauthorizedUserExceptionTest" />
-        <item itemvalue="JUnit.DataMapperTest.mapTracksToTracksDTOTest" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -311,6 +255,6 @@
     <SUITE FILE_PATH="coverage/Spotitube$TokenDAOTest.ic" NAME="TokenDAOTest Coverage Results" MODIFIED="1616067736672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.spotitube.datasource.dao.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Spotitube$TESTS.ic" NAME="TESTS Coverage Results" MODIFIED="1616405589020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Spotitube$TESTS.ic" NAME="TESTS Coverage Results" MODIFIED="1616409644056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

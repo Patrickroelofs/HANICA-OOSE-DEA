@@ -132,7 +132,7 @@ public class DataMapperTest {
     @Test
     public void mapTracksToTracksDTOTestTogglerSetToTrue() {
         try {
-            String sql = "SELECT * FROM tracks LEFT JOIN playlists_tracks pt ON tracks.id = pt.trackId WHERE pt.playlistId = ?";
+            String sql = "SELECT * FROM tracks LEFT JOIN playlists_tracks pt on tracks.id = pt.trackId WHERE tracks.id NOT IN (SELECT trackId FROM playlists_tracks WHERE pt.playlistId = ?)";
 
             when(dataSource.getConnection()).thenReturn(connection);
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
@@ -164,7 +164,7 @@ public class DataMapperTest {
     @Test
     public void mapTracksToTracksDTOTestTogglerSetToFalse() {
         try {
-            String sql = "SELECT * FROM tracks LEFT JOIN playlists_tracks pt on tracks.id = pt.trackId WHERE tracks.id NOT IN (SELECT trackId FROM playlists_tracks WHERE pt.playlistId = ?)";
+            String sql = "SELECT * FROM tracks LEFT JOIN playlists_tracks pt ON tracks.id = pt.trackId WHERE pt.playlistId = ?";
 
             when(dataSource.getConnection()).thenReturn(connection);
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);

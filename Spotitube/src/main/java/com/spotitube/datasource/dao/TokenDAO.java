@@ -2,6 +2,7 @@ package com.spotitube.datasource.dao;
 
 import com.spotitube.datasource.ITokenDAO;
 import com.spotitube.domain.Token;
+import com.spotitube.exceptions.SQLServerException;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -35,7 +36,7 @@ public class TokenDAO implements ITokenDAO {
       return token;
 
     } catch (SQLException e) {
-      throw new InternalServerErrorException(e);
+      throw new SQLServerException(e);
     }
   }
 
@@ -55,7 +56,7 @@ public class TokenDAO implements ITokenDAO {
       }
 
     } catch(SQLException e) {
-      throw new InternalServerErrorException(e);
+      throw new SQLServerException(e);
     }
 
     return result;
@@ -76,7 +77,7 @@ public class TokenDAO implements ITokenDAO {
       return null;
 
     } catch(SQLException e) {
-      throw new InternalServerErrorException(e);
+      throw new SQLServerException(e);
     }
   }
 }

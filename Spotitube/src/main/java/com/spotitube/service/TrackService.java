@@ -24,7 +24,7 @@ public class TrackService {
   public Response getAllTracks(@QueryParam("forPlaylist") int playlistId, @QueryParam("token") String token) {
     if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
-    return Response.status(200).entity(dataMapper.mapTracksToTracksDTO(playlistId, true)).build();
+    return Response.status(Response.Status.OK).entity(dataMapper.mapTracksToTracksDTO(playlistId, true)).build();
   }
 
   @GET
@@ -33,7 +33,7 @@ public class TrackService {
   public Response getTracksFromPlaylist(@PathParam("playlistId") int playlistId, @QueryParam("token") String token) {
     if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
-    return Response.status(200).entity(dataMapper.mapTracksToTracksDTO(playlistId, false)).build();
+    return Response.status(Response.Status.OK).entity(dataMapper.mapTracksToTracksDTO(playlistId, false)).build();
   }
 
   @POST
@@ -44,7 +44,7 @@ public class TrackService {
     if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
     trackDAO.addTrackToPlaylist(playlistId, trackDTO.id, trackDTO.offlineAvailable);
-    return Response.status(201).entity(dataMapper.mapTracksToTracksDTO(playlistId, false)).build();
+    return Response.status(Response.Status.CREATED).entity(dataMapper.mapTracksToTracksDTO(playlistId, false)).build();
   }
 
   @DELETE
@@ -54,7 +54,7 @@ public class TrackService {
     if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
     trackDAO.deleteTrack(playlistId, trackId);
-    return Response.status(200).entity(dataMapper.mapTracksToTracksDTO(playlistId, false)).build();
+    return Response.status(Response.Status.OK).entity(dataMapper.mapTracksToTracksDTO(playlistId, false)).build();
   }
 
   @Inject

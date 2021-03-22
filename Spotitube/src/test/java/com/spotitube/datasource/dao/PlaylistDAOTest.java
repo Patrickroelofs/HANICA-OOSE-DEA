@@ -2,6 +2,7 @@ package com.spotitube.datasource.dao;
 
 import com.spotitube.domain.Playlist;
 import com.spotitube.domain.Track;
+import com.spotitube.exceptions.SQLServerException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -100,7 +101,7 @@ public class PlaylistDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeQuery()).thenThrow(new SQLException());
 
-            assertThrows(InternalServerErrorException.class, () -> {
+            assertThrows(SQLServerException.class, () -> {
                 playlistDAO.getAllPlaylists(TOKEN);
             });
 
@@ -143,7 +144,7 @@ public class PlaylistDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
 
-            assertThrows(InternalServerErrorException.class, () -> {
+            assertThrows(SQLServerException.class, () -> {
                 playlistDAO.addPlaylist(PLAYLIST_NAME, USERNAME);
             });
 
@@ -184,7 +185,7 @@ public class PlaylistDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
 
-            assertThrows(InternalServerErrorException.class, () -> {
+            assertThrows(SQLServerException.class, () -> {
                 playlistDAO.deletePlaylist(PLAYLIST_ID);
             });
 
@@ -234,7 +235,7 @@ public class PlaylistDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
 
-            assertThrows(InternalServerErrorException.class, () -> {
+            assertThrows(SQLServerException.class, () -> {
                 playlistDAO.editPlaylist(PLAYLIST_NAME, PLAYLIST_ID);
             });
 

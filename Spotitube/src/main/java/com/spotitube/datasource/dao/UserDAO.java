@@ -1,6 +1,7 @@
 package com.spotitube.datasource.dao;
 
 import com.spotitube.datasource.IUserDAO;
+import com.spotitube.exceptions.SQLServerException;
 
 import javax.annotation.Resource;
 import javax.enterprise.inject.Default;
@@ -36,7 +37,7 @@ public class UserDAO implements IUserDAO {
       return result;
 
     } catch (SQLException e) {
-      throw new InternalServerErrorException(e);
+      throw new SQLServerException(e);
     }
   }
 

@@ -2,6 +2,7 @@ package com.spotitube.datasource.dao;
 
 import com.spotitube.datasource.IPlaylistDAO;
 import com.spotitube.domain.Playlist;
+import com.spotitube.exceptions.SQLServerException;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -34,7 +35,7 @@ public class PlaylistDAO implements IPlaylistDAO {
       return true;
 
     } catch (SQLException e) {
-      throw new InternalServerErrorException(e);
+      throw new SQLServerException(e);
     }
 
   }
@@ -62,7 +63,7 @@ public class PlaylistDAO implements IPlaylistDAO {
       }
       return playlists;
     } catch (SQLException e) {
-      throw new InternalServerErrorException();
+      throw new SQLServerException(e);
     }
   }
 
@@ -77,7 +78,7 @@ public class PlaylistDAO implements IPlaylistDAO {
       return true;
 
     } catch (SQLException e) {
-      throw new InternalServerErrorException(e);
+      throw new SQLServerException(e);
     }
   }
 
@@ -92,7 +93,7 @@ public class PlaylistDAO implements IPlaylistDAO {
       return true;
 
     } catch (SQLException e) {
-      throw new InternalServerErrorException(e);
+      throw new SQLServerException(e);
     }
 
   }

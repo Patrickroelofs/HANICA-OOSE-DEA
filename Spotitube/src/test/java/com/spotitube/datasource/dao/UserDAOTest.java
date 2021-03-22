@@ -1,5 +1,6 @@
 package com.spotitube.datasource.dao;
 
+import com.spotitube.exceptions.SQLServerException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -72,7 +73,7 @@ public class UserDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeQuery()).thenThrow(new SQLException());
 
-            assertThrows(InternalServerErrorException.class, () -> {
+            assertThrows(SQLServerException.class, () -> {
                 userDAO.verifyUser(USERNAME, PASSWORD);
             });
         } catch (Exception e) {

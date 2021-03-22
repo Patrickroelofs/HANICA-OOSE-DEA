@@ -2,6 +2,7 @@ package com.spotitube.datasource.dao;
 
 import com.spotitube.domain.Playlist;
 import com.spotitube.domain.Track;
+import com.spotitube.exceptions.SQLServerException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -123,7 +124,7 @@ public class TrackDAOTest {
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
             when(resultSet.next()).thenThrow(new SQLException());
 
-            assertThrows(InternalServerErrorException.class, () -> {
+            assertThrows(SQLServerException.class, () -> {
                 trackDAO.getAllTracks(PLAYLIST_ID);
             });
 
@@ -142,7 +143,7 @@ public class TrackDAOTest {
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
             when(resultSet.next()).thenThrow(new SQLException());
 
-            assertThrows(InternalServerErrorException.class, () -> {
+            assertThrows(SQLServerException.class, () -> {
                 trackDAO.getAllTracksNotInPlaylist(PLAYLIST_ID);
             });
 
@@ -181,7 +182,7 @@ public class TrackDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
 
-            assertThrows(InternalServerErrorException.class, () -> {
+            assertThrows(SQLServerException.class, () -> {
                 trackDAO.deleteTrack(PLAYLIST_ID, TRACK_ID);
             });
 
@@ -219,7 +220,7 @@ public class TrackDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
 
-            assertThrows(InternalServerErrorException.class, () -> {
+            assertThrows(SQLServerException.class, () -> {
                 trackDAO.addTrackToPlaylist(PLAYLIST_ID, TRACK_ID, PLAYLIST_OFFLINEAVAILABLE);
             });
         } catch (Exception e) {
