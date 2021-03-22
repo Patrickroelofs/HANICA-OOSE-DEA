@@ -7,9 +7,9 @@ insert into playlists(id, name, owner) values
 (2, 'playlist2', 'patrick');
 
 INSERT INTO tracks (id, title, performer, duration, album, playcount, publicationDate, description, offlineAvailable) VALUES
-(1, 'Blinding Lights', 'The Weeknd', 200, 'After Hours', 324, '23-03-2020', 'Song about the weekend', 0),
-(2, 'Heartless', 'The Weeknd', 198, 'After Hours', 257, '23-03-2020', 'Song about the heartless people', 0),
-(3, 'In Your Eyes', 'The Weeknd', 238, 'After Hours', 99, '23-03-2020', 'Song about your eyes', 0);
+(1, 'Goliath', 'WOODKID', 351, 'S16', 324, '23-03-2020', 'Goliath from woodkid', 0),
+(2, 'Pale Yellow', 'WOODKID', 410, 'S16', 257, '23-03-2020', 'Pale Yellow from woodkid', 0),
+(3, 'Enemy', 'WOODKID', 405, 'S16', 99, '23-03-2020', 'Enemy from woodkid', 0);
 
 INSERT INTO playlists_tracks (playlistId, trackId, offlineAvailable) VALUES
 (1, 1, 0),
