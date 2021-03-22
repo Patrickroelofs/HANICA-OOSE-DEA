@@ -10,25 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bd94e4c-3310-4bdf-a8af-9029576de7f7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/PlaylistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/service/PlaylistService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/TrackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/service/TrackService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/dto/PlaylistDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/service/dto/PlaylistDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/dto/PlaylistsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/service/dto/PlaylistsDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/dto/TokenDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/service/dto/TokenDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/dto/TrackDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/service/dto/TrackDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/dto/TracksDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/service/dto/TracksDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/controller/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/service/dto/UserDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/ITokenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/ITokenDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/PlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/PlaylistDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/TokenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/TokenDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/mapper/DataMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/mapper/DataMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/PlaylistControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/PlaylistControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/TrackControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/TrackControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/UserControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/TokenDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/TokenDAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/mapper/DataMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/mapper/DataMapperTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

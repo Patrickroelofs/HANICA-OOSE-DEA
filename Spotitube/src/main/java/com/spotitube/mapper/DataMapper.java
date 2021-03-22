@@ -37,9 +37,9 @@ public class DataMapper {
         ArrayList<Track> tracks;
 
         if(toggler) {
-            tracks = trackDAO.getAllTracks(forPlaylist);
-        } else {
             tracks = trackDAO.getAllTracksNotInPlaylist(forPlaylist);
+        } else {
+            tracks = trackDAO.getAllTracks(forPlaylist);
         }
 
         TracksDTO tracksDTO = new TracksDTO();
