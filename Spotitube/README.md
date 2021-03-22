@@ -30,13 +30,13 @@ Realiseer de Spotitube-applicatie waarbij je gebruik maakt van de volgende layer
 
 ## Package diagram
 
-
+![Package](documents\Package.png)
 
 
 
 ## Deployment Diagram
 
-
+![Deployment](documents\Deployment.png)
 
 
 
