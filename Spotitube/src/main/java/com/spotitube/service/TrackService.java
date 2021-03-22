@@ -1,6 +1,6 @@
-package com.spotitube.controller;
+package com.spotitube.service;
 
-import com.spotitube.controller.dto.TrackDTO;
+import com.spotitube.service.dto.TrackDTO;
 import com.spotitube.datasource.ITokenDAO;
 import com.spotitube.datasource.ITrackDAO;
 import com.spotitube.exceptions.UnauthorizedUserException;
@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/")
-public class TrackController {
+public class TrackService {
 
   private ITokenDAO tokenDAO;
   private ITrackDAO trackDAO;

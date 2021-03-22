@@ -1,7 +1,7 @@
 package com.spotitube.datasource.controller;
 
-import com.spotitube.controller.TrackController;
-import com.spotitube.controller.dto.TrackDTO;
+import com.spotitube.service.TrackService;
+import com.spotitube.service.dto.TrackDTO;
 import com.spotitube.datasource.ITokenDAO;
 import com.spotitube.datasource.ITrackDAO;
 import com.spotitube.mapper.DataMapper;
@@ -20,7 +20,7 @@ public class TrackControllerTest {
     public int TRACK_ID = 1;
     public boolean OFFLINE_AVAILABLE = true;
 
-    TrackController trackController;
+    TrackService trackService;
     DataMapper dataMapper;
     ITokenDAO tokenDAO;
     ITrackDAO trackDAO;
@@ -28,15 +28,15 @@ public class TrackControllerTest {
 
     @BeforeEach
     public void setup() {
-        trackController = new TrackController();
+        trackService = new TrackService();
 
         trackDAO = mock(ITrackDAO.class);
         tokenDAO = mock(ITokenDAO.class);
         dataMapper = mock(DataMapper.class);
 
-        trackController.setTrackDAO(trackDAO);
-        trackController.setTokenDAO(tokenDAO);
-        trackController.setDataMapper(dataMapper);
+        trackService.setTrackDAO(trackDAO);
+        trackService.setTokenDAO(tokenDAO);
+        trackService.setDataMapper(dataMapper);
 
         trackDTO = new TrackDTO();
         trackDTO.id = TRACK_ID;
@@ -48,7 +48,7 @@ public class TrackControllerTest {
 
         when(tokenDAO.verify(TOKEN)).thenReturn(true);
 
-        Response response = trackController.getAllTracks(PLAYLIST_ID, TOKEN);
+        Response response = trackService.getAllTracks(PLAYLIST_ID, TOKEN);
 
         assertEquals(statusCodeExpected, response.getStatus());
     }
@@ -59,7 +59,7 @@ public class TrackControllerTest {
 
         when(tokenDAO.verify(TOKEN)).thenReturn(true);
 
-        Response response = trackController.getTracksFromPlaylist(PLAYLIST_ID, TOKEN);
+        Response response = trackService.getTracksFromPlaylist(PLAYLIST_ID, TOKEN);
 
         assertEquals(statusCodeExpected, response.getStatus());
     }
@@ -70,7 +70,7 @@ public class TrackControllerTest {
 
         when(tokenDAO.verify(TOKEN)).thenReturn(true);
 
-        Response response = trackController.addTrackToPlaylist(PLAYLIST_ID, trackDTO, TOKEN);
+        Response response = trackService.addTrackToPlaylist(PLAYLIST_ID, trackDTO, TOKEN);
 
         assertEquals(statusCodeExpected, response.getStatus());
     }
@@ -81,7 +81,7 @@ public class TrackControllerTest {
 
         when(tokenDAO.verify(TOKEN)).thenReturn(true);
 
-        Response response = trackController.deleteTrackFromPlaylist(PLAYLIST_ID, TRACK_ID, TOKEN);
+        Response response = trackService.deleteTrackFromPlaylist(PLAYLIST_ID, TRACK_ID, TOKEN);
 
         assertEquals(statusCodeExpected, response.getStatus());
     }

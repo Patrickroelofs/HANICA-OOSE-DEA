@@ -1,7 +1,7 @@
 package com.spotitube.datasource.controller;
 
-import com.spotitube.controller.UserController;
-import com.spotitube.controller.dto.UserDTO;
+import com.spotitube.service.UserService;
+import com.spotitube.service.dto.UserDTO;
 import com.spotitube.datasource.dao.TokenDAO;
 import com.spotitube.datasource.dao.UserDAO;
 import com.spotitube.domain.User;
@@ -17,14 +17,14 @@ import static org.mockito.Mockito.when;
 public class UserControllerTest {
     private String USERNAME = "patrick";
     private String PASSWORD = "112112";
-    private UserController userController;
+    private UserService userService;
     private UserDTO userDTO;
     private UserDAO userDAO;
     private TokenDAO tokenDAO;
     
     @BeforeEach
     public void setup() {
-        userController = new UserController();
+        userService = new UserService();
 
         userDTO = new UserDTO();
         userDTO.user = USERNAME;
@@ -33,8 +33,8 @@ public class UserControllerTest {
         userDAO = mock(UserDAO.class);
         tokenDAO = mock(TokenDAO.class);
 
-        userController.setUserDAO(userDAO);
-        userController.setTokenDAO(tokenDAO);
+        userService.setUserDAO(userDAO);
+        userService.setTokenDAO(tokenDAO);
     }
     
     @Test
@@ -48,7 +48,7 @@ public class UserControllerTest {
 
             when(userDAO.verifyUser(userDTO.user, userDTO.password)).thenReturn(true);
 
-            Response response = userController.login(userDTO);
+            Response response = userService.login(userDTO);
 
             assertEquals(statusCodeExpected, response.getStatus());
 
@@ -68,7 +68,7 @@ public class UserControllerTest {
 
             when(userDAO.verifyUser(userDTO.user, userDTO.password)).thenReturn(false);
 
-            Response response = userController.login(userDTO);
+            Response response = userService.login(userDTO);
 
             assertEquals(statusCodeExpected, response.getStatus());
 

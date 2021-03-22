@@ -1,6 +1,5 @@
 package com.spotitube.datasource.dao;
 
-import com.spotitube.controller.dto.TokenDTO;
 import com.spotitube.datasource.ITokenDAO;
 import com.spotitube.domain.Token;
 
@@ -11,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.UUID;
 
 public class TokenDAO implements ITokenDAO {
 

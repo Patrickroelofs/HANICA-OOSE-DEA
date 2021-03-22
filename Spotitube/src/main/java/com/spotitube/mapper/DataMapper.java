@@ -1,18 +1,13 @@
 package com.spotitube.mapper;
 
-import com.spotitube.controller.dto.*;
+import com.spotitube.service.dto.*;
 import com.spotitube.datasource.IPlaylistDAO;
-import com.spotitube.datasource.ITokenDAO;
 import com.spotitube.datasource.ITrackDAO;
-import com.spotitube.datasource.IUserDAO;
-import com.spotitube.datasource.dao.PlaylistDAO;
-import com.spotitube.datasource.dao.TrackDAO;
 import com.spotitube.domain.Playlist;
 import com.spotitube.domain.Track;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DataMapper {
 

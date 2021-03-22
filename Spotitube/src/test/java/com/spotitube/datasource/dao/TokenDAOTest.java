@@ -1,6 +1,5 @@
 package com.spotitube.datasource.dao;
 
-import com.spotitube.controller.dto.TokenDTO;
 import com.spotitube.domain.Token;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

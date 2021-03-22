@@ -1,4 +1,4 @@
-package com.spotitube.controller.dto;
+package com.spotitube.service.dto;
 
 public class TokenDTO {
   public String user;

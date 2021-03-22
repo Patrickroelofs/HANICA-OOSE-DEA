@@ -1,8 +1,8 @@
 package com.spotitube.datasource.controller;
 
-import com.spotitube.controller.PlaylistController;
-import com.spotitube.controller.dto.PlaylistDTO;
-import com.spotitube.controller.dto.PlaylistsDTO;
+import com.spotitube.service.PlaylistService;
+import com.spotitube.service.dto.PlaylistDTO;
+import com.spotitube.service.dto.PlaylistsDTO;
 import com.spotitube.datasource.dao.PlaylistDAO;
 import com.spotitube.datasource.dao.TokenDAO;
 import com.spotitube.domain.Playlist;
@@ -11,7 +11,6 @@ import com.spotitube.mapper.DataMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.core.Response;
 
 import java.util.ArrayList;
@@ -24,22 +23,22 @@ import static org.mockito.Mockito.when;
 public class PlaylistControllerTest {
     public String TOKEN = "111-111-111";
 
-    PlaylistController playlistController;
+    PlaylistService playlistService;
     DataMapper dataMapper;
     PlaylistDAO playlistDAO;
     TokenDAO tokenDAO;
 
     @BeforeEach
     public void setup() {
-        playlistController = new PlaylistController();
+        playlistService = new PlaylistService();
 
         playlistDAO = mock(PlaylistDAO.class);
         tokenDAO = mock(TokenDAO.class);
         dataMapper = mock(DataMapper.class);
 
-        playlistController.setPlaylistDAO(playlistDAO);
-        playlistController.setTokenDAO(tokenDAO);
-        playlistController.setDataMapper(dataMapper);
+        playlistService.setPlaylistDAO(playlistDAO);
+        playlistService.setTokenDAO(tokenDAO);
+        playlistService.setDataMapper(dataMapper);
     }
 
     @Test
@@ -62,7 +61,7 @@ public class PlaylistControllerTest {
         when(dataMapper.mapPlaylistToPlaylistsDTO(TOKEN)).thenReturn(playlistsDTO);
         when(playlistDAO.getAllPlaylists(TOKEN)).thenReturn(playlists);
 
-        Response response = playlistController.getAllPlaylists(TOKEN);
+        Response response = playlistService.getAllPlaylists(TOKEN);
 
         assertEquals(statusCodeExpected, response.getStatus());
     }
@@ -78,7 +77,7 @@ public class PlaylistControllerTest {
         when(tokenDAO.verify(TOKEN)).thenReturn(true);
         when(playlistDAO.editPlaylist(playlistDTO.name, playlistDTO.id)).thenReturn(true);
 
-        Response response = playlistController.editPlaylist(playlistDTO, TOKEN);
+        Response response = playlistService.editPlaylist(playlistDTO, TOKEN);
 
         assertEquals(statusCodeExpected, response.getStatus());
     }
@@ -94,7 +93,7 @@ public class PlaylistControllerTest {
         when(tokenDAO.verify(TOKEN)).thenReturn(true);
         when(playlistDAO.deletePlaylist(playlistDTO.id)).thenReturn(true);
 
-        Response response = playlistController.deletePlaylist(playlistDTO.id, TOKEN);
+        Response response = playlistService.deletePlaylist(playlistDTO.id, TOKEN);
 
         assertEquals(statusCodeExpected, response.getStatus());
     }
@@ -108,7 +107,7 @@ public class PlaylistControllerTest {
         when(tokenDAO.verify(TOKEN)).thenReturn(false);
 
         assertThrows(UnauthorizedUserException.class, () -> {
-            playlistController.deletePlaylist(playlistDTO.id, TOKEN);
+            playlistService.deletePlaylist(playlistDTO.id, TOKEN);
         });
     }
 
@@ -125,7 +124,7 @@ public class PlaylistControllerTest {
         when(playlistDAO.addPlaylist(playlistDTO.name, tokenDAO.getUsername(TOKEN))).thenReturn(true);
         when(tokenDAO.getUsername(TOKEN)).thenReturn(username);
 
-        Response response = playlistController.addPlaylist(playlistDTO, TOKEN);
+        Response response = playlistService.addPlaylist(playlistDTO, TOKEN);
 
         assertEquals(statusCodeExpected, response.getStatus());
     }

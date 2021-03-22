@@ -1,6 +1,6 @@
-package com.spotitube.controller;
+package com.spotitube.service;
 
-import com.spotitube.controller.dto.PlaylistDTO;
+import com.spotitube.service.dto.PlaylistDTO;
 import com.spotitube.datasource.IPlaylistDAO;
 import com.spotitube.datasource.ITokenDAO;
 import com.spotitube.exceptions.UnauthorizedUserException;
@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/")
-public class PlaylistController {
+public class PlaylistService {
   ITokenDAO tokenDAO;
   IPlaylistDAO playlistDAO;
   DataMapper dataMapper;

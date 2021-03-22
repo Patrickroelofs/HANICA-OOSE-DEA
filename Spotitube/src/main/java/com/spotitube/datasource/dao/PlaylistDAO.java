@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-// TODO: Use interfaces instead of direct classes in controllers
 public class PlaylistDAO implements IPlaylistDAO {
 
   @Resource(name = "jdbc/spotitube")

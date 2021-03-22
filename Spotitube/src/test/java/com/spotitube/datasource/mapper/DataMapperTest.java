@@ -1,20 +1,18 @@
 package com.spotitube.datasource.mapper;
 
-import com.spotitube.controller.dto.PlaylistDTO;
-import com.spotitube.controller.dto.PlaylistsDTO;
-import com.spotitube.controller.dto.TracksDTO;
+import com.spotitube.service.dto.PlaylistDTO;
+import com.spotitube.service.dto.PlaylistsDTO;
+import com.spotitube.service.dto.TracksDTO;
 import com.spotitube.datasource.dao.PlaylistDAO;
 import com.spotitube.datasource.dao.TrackDAO;
 import com.spotitube.datasource.dao.UserDAO;
 import com.spotitube.domain.Playlist;
-import com.spotitube.domain.Track;
 import com.spotitube.mapper.DataMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import javax.sql.DataSource;
-import javax.ws.rs.core.Response;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

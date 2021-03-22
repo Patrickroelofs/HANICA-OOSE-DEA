@@ -1,6 +1,6 @@
-package com.spotitube.controller;
+package com.spotitube.service;
 
-import com.spotitube.controller.dto.UserDTO;
+import com.spotitube.service.dto.UserDTO;
 import com.spotitube.datasource.ITokenDAO;
 import com.spotitube.datasource.IUserDAO;
 import com.spotitube.domain.Token;
@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/")
-public class UserController {
+public class UserService {
 
   private IUserDAO userDAO;
   private ITokenDAO tokenDAO;
