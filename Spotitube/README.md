@@ -30,7 +30,7 @@ Realiseer de Spotitube-applicatie waarbij je gebruik maakt van de volgende layer
 
 ## Package diagram
 
-![Package](https://raw.githubusercontent.com/Patrickroelofs/HANICA-OOSE-DEA/master/Spotitube/documents/Package.png)
+![Package](documents/package.png)
 
 De package diagram laat zien hoe verschillende lagen met elkaar spreken, in mijn applicatie is het zo opgebouwd;
 
@@ -46,7 +46,7 @@ De exceptions worden door de DAO en service aangeroepen, dit zijn custom excepti
 
 ## Deployment Diagram
 
-![Deployment](https://raw.githubusercontent.com/Patrickroelofs/HANICA-OOSE-DEA/master/Spotitube/documents/Deployment.png)
+![Deployment](documents/deployment.png)
 
 Het deployment diagram bestaat uit drie devices:
 ⦁	Een cliënt.
