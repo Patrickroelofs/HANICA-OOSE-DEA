@@ -1,12 +1,10 @@
 package com.spotitube.domain;
 
-import java.util.List;
 
 public class Playlist {
     private int id;
     private String name;
     private boolean owner;
-    private List<Track> tracks;
     private int duration;
 
     public Playlist(int id, String name, boolean owner) {
@@ -45,10 +43,6 @@ public class Playlist {
 
     public void setOwner(boolean owner) {
         this.owner = owner;
-    }
-
-    public void setTracks(List<Track> tracks) {
-        this.tracks = tracks;
     }
 
     public int getDuration() {

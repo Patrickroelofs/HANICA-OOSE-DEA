@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
-import javax.ws.rs.InternalServerErrorException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -73,9 +72,7 @@ public class UserDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeQuery()).thenThrow(new SQLException());
 
-            assertThrows(SQLServerException.class, () -> {
-                userDAO.verifyUser(USERNAME, PASSWORD);
-            });
+            assertThrows(SQLServerException.class, () -> userDAO.verifyUser(USERNAME, PASSWORD));
         } catch (Exception e) {
             fail(e);
         }

@@ -1,22 +1,24 @@
 package com.spotitube.service;
 
+import com.spotitube.domain.Track;
 import com.spotitube.service.dto.TrackDTO;
 import com.spotitube.datasource.ITokenDAO;
 import com.spotitube.datasource.ITrackDAO;
 import com.spotitube.exceptions.UnauthorizedUserException;
-import com.spotitube.mapper.DataMapper;
+import com.spotitube.service.dto.DTOMapper.DTOMapper;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 
 @Path("/")
 public class TrackService {
 
   private ITokenDAO tokenDAO;
   private ITrackDAO trackDAO;
-  private DataMapper dataMapper;
+  private DTOMapper DTOMapper;
 
   @GET
   @Path("/tracks")
@@ -24,7 +26,8 @@ public class TrackService {
   public Response getAllTracks(@QueryParam("forPlaylist") int playlistId, @QueryParam("token") String token) {
     if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
-    return Response.status(Response.Status.OK).entity(dataMapper.mapTracksToTracksDTO(playlistId, true)).build();
+    ArrayList<Track> tracks = trackDAO.getAllTracksNotInPlaylist(playlistId);
+    return Response.status(Response.Status.OK).entity(DTOMapper.mapTracksToTracksDTO(tracks)).build();
   }
 
   @GET
@@ -33,7 +36,8 @@ public class TrackService {
   public Response getTracksFromPlaylist(@PathParam("playlistId") int playlistId, @QueryParam("token") String token) {
     if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
-    return Response.status(Response.Status.OK).entity(dataMapper.mapTracksToTracksDTO(playlistId, false)).build();
+    ArrayList<Track> tracks = trackDAO.getAllTracks(playlistId);
+    return Response.status(Response.Status.OK).entity(DTOMapper.mapTracksToTracksDTO(tracks)).build();
   }
 
   @POST
@@ -43,8 +47,12 @@ public class TrackService {
   public Response addTrackToPlaylist(@PathParam("playlistId") int playlistId, TrackDTO trackDTO, @QueryParam("token") String token) {
     if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
-    trackDAO.addTrackToPlaylist(playlistId, trackDTO.id, trackDTO.offlineAvailable);
-    return Response.status(Response.Status.CREATED).entity(dataMapper.mapTracksToTracksDTO(playlistId, false)).build();
+    if(trackDAO.addTrackToPlaylist(playlistId, trackDTO.id, trackDTO.offlineAvailable)) {
+      ArrayList<Track> tracks = trackDAO.getAllTracks(playlistId);
+      return Response.status(Response.Status.CREATED).entity(DTOMapper.mapTracksToTracksDTO(tracks)).build();
+    } else {
+      return Response.status(Response.Status.FORBIDDEN).build();
+    }
   }
 
   @DELETE
@@ -53,8 +61,12 @@ public class TrackService {
   public Response deleteTrackFromPlaylist(@PathParam("playlistid") int playlistId, @PathParam("trackid") int trackId, @QueryParam("token") String token) {
     if(!tokenDAO.verify(token)) throw new UnauthorizedUserException("Invalid Token");
 
-    trackDAO.deleteTrack(playlistId, trackId);
-    return Response.status(Response.Status.OK).entity(dataMapper.mapTracksToTracksDTO(playlistId, false)).build();
+    if(trackDAO.deleteTrack(playlistId, trackId)) {
+      ArrayList<Track> tracks = trackDAO.getAllTracks(playlistId);
+      return Response.status(Response.Status.OK).entity(DTOMapper.mapTracksToTracksDTO(tracks)).build();
+    } else {
+      return Response.status(Response.Status.FORBIDDEN).build();
+    }
   }
 
   @Inject
@@ -68,7 +80,7 @@ public class TrackService {
   }
 
   @Inject
-  public void setDataMapper(DataMapper dataMapper) {
-    this.dataMapper = dataMapper;
+  public void setDataMapper(DTOMapper DTOMapper) {
+    this.DTOMapper = DTOMapper;
   }
 }

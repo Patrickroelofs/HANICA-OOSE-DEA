@@ -7,7 +7,7 @@ import com.spotitube.datasource.dao.PlaylistDAO;
 import com.spotitube.datasource.dao.TokenDAO;
 import com.spotitube.domain.Playlist;
 import com.spotitube.exceptions.UnauthorizedUserException;
-import com.spotitube.mapper.DataMapper;
+import com.spotitube.service.dto.DTOMapper.DTOMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,10 +21,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class PlaylistControllerTest {
-    public String TOKEN = "111-111-111";
+    public final String TOKEN = "111-111-111";
 
     PlaylistService playlistService;
-    DataMapper dataMapper;
+    DTOMapper DTOMapper;
     PlaylistDAO playlistDAO;
     TokenDAO tokenDAO;
 
@@ -34,11 +34,11 @@ public class PlaylistControllerTest {
 
         playlistDAO = mock(PlaylistDAO.class);
         tokenDAO = mock(TokenDAO.class);
-        dataMapper = mock(DataMapper.class);
+        DTOMapper = mock(DTOMapper.class);
 
         playlistService.setPlaylistDAO(playlistDAO);
         playlistService.setTokenDAO(tokenDAO);
-        playlistService.setDataMapper(dataMapper);
+        playlistService.setDataMapper(DTOMapper);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class PlaylistControllerTest {
         playlists.add(playlist);
 
         when(tokenDAO.verify(TOKEN)).thenReturn(true);
-        when(dataMapper.mapPlaylistToPlaylistsDTO(TOKEN)).thenReturn(playlistsDTO);
+        when(DTOMapper.mapPlaylistToPlaylistsDTO(playlists)).thenReturn(playlistsDTO);
         when(playlistDAO.getAllPlaylists(TOKEN)).thenReturn(playlists);
 
         Response response = playlistService.getAllPlaylists(TOKEN);
@@ -83,6 +83,22 @@ public class PlaylistControllerTest {
     }
 
     @Test
+    public void editPlaylistPlaylistCannotBeAddedTest() {
+        int statusCodeExpected = 403;
+
+        PlaylistDTO playlistDTO = new PlaylistDTO();
+        playlistDTO.id = 1;
+        playlistDTO.name = "Playlist1";
+
+        when(tokenDAO.verify(TOKEN)).thenReturn(true);
+        when(playlistDAO.editPlaylist(playlistDTO.name, playlistDTO.id)).thenReturn(false);
+
+        Response response = playlistService.editPlaylist(playlistDTO, TOKEN);
+
+        assertEquals(statusCodeExpected, response.getStatus());
+    }
+
+    @Test
     public void deletePlaylistTest() {
         int statusCodeExpected = 200;
 
@@ -99,6 +115,22 @@ public class PlaylistControllerTest {
     }
 
     @Test
+    public void deletePlaylistFailsToDeletePlaylistTest() {
+        int statusCodeExpected = 403;
+
+        PlaylistDTO playlistDTO = new PlaylistDTO();
+        playlistDTO.id = 1;
+        playlistDTO.name = "Playlist1";
+
+        when(tokenDAO.verify(TOKEN)).thenReturn(true);
+        when(playlistDAO.deletePlaylist(playlistDTO.id)).thenReturn(false);
+
+        Response response = playlistService.deletePlaylist(playlistDTO.id, TOKEN);
+
+        assertEquals(statusCodeExpected, response.getStatus());
+    }
+
+    @Test
     public void deletePlaylistThrowsUnauthorizedUserExceptionTest() {
         PlaylistDTO playlistDTO = new PlaylistDTO();
         playlistDTO.id = 1;
@@ -106,9 +138,7 @@ public class PlaylistControllerTest {
 
         when(tokenDAO.verify(TOKEN)).thenReturn(false);
 
-        assertThrows(UnauthorizedUserException.class, () -> {
-            playlistService.deletePlaylist(playlistDTO.id, TOKEN);
-        });
+        assertThrows(UnauthorizedUserException.class, () -> playlistService.deletePlaylist(playlistDTO.id, TOKEN));
     }
 
     @Test
@@ -121,7 +151,25 @@ public class PlaylistControllerTest {
         playlistDTO.name = "Playlist1";
 
         when(tokenDAO.verify(TOKEN)).thenReturn(true);
-        when(playlistDAO.addPlaylist(playlistDTO.name, tokenDAO.getUsername(TOKEN))).thenReturn(true);
+        when(playlistDAO.addPlaylist(playlistDTO.name, username)).thenReturn(true);
+        when(tokenDAO.getUsername(TOKEN)).thenReturn(username);
+
+        Response response = playlistService.addPlaylist(playlistDTO, TOKEN);
+
+        assertEquals(statusCodeExpected, response.getStatus());
+    }
+
+    @Test
+    public void addPlaylistPlaylistCannotBeAddedTest() {
+        int statusCodeExpected = 403;
+        String username = "patrick";
+
+        PlaylistDTO playlistDTO = new PlaylistDTO();
+        playlistDTO.id = 1;
+        playlistDTO.name = "Playlist1";
+
+        when(tokenDAO.verify(TOKEN)).thenReturn(true);
+        when(playlistDAO.addPlaylist(playlistDTO.name, username)).thenReturn(false);
         when(tokenDAO.getUsername(TOKEN)).thenReturn(username);
 
         Response response = playlistService.addPlaylist(playlistDTO, TOKEN);

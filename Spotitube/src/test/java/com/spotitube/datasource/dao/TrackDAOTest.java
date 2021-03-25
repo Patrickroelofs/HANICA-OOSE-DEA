@@ -1,13 +1,11 @@
 package com.spotitube.datasource.dao;
 
-import com.spotitube.domain.Playlist;
 import com.spotitube.domain.Track;
 import com.spotitube.exceptions.SQLServerException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
-import javax.ws.rs.InternalServerErrorException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,18 +16,18 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class TrackDAOTest {
-    public int PLAYLIST_ID = 1;
-    public int TRACK_ID = 1;
+    public final int PLAYLIST_ID = 1;
+    public final int TRACK_ID = 1;
     public String TRACK_TITLE = "Track Title";
     public String TRACK_PERFORMER = "Performer";
-    public String PLAYLIST_TITLE = "PlaylistTitle";
-    public String PLAYLIST_PERFORMER = "PlaylistTitle";
-    public int PLAYLIST_DURATION = 100;
-    public String PLAYLIST_ALBUM = "PlaylistTitle";
-    public int PLAYLIST_PLAYCOUNT = 5;
-    public String PLAYLIST_PUBLICATIONDATE = "PlaylistTitle";
-    public String PLAYLIST_DESCRIPTION = "PlaylistTitle";
-    public boolean PLAYLIST_OFFLINEAVAILABLE = false;
+    public final String PLAYLIST_TITLE = "PlaylistTitle";
+    public final String PLAYLIST_PERFORMER = "PlaylistTitle";
+    public final int PLAYLIST_DURATION = 100;
+    public final String PLAYLIST_ALBUM = "PlaylistTitle";
+    public final int PLAYLIST_PLAYCOUNT = 5;
+    public final String PLAYLIST_PUBLICATIONDATE = "PlaylistTitle";
+    public final String PLAYLIST_DESCRIPTION = "PlaylistTitle";
+    public final boolean PLAYLIST_OFFLINEAVAILABLE = false;
 
     private TrackDAO trackDAO;
     private DataSource dataSource;
@@ -124,9 +122,7 @@ public class TrackDAOTest {
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
             when(resultSet.next()).thenThrow(new SQLException());
 
-            assertThrows(SQLServerException.class, () -> {
-                trackDAO.getAllTracks(PLAYLIST_ID);
-            });
+            assertThrows(SQLServerException.class, () -> trackDAO.getAllTracks(PLAYLIST_ID));
 
         } catch (Exception e) {
             fail(e);
@@ -143,9 +139,7 @@ public class TrackDAOTest {
             when(preparedStatement.executeQuery()).thenReturn(resultSet);
             when(resultSet.next()).thenThrow(new SQLException());
 
-            assertThrows(SQLServerException.class, () -> {
-                trackDAO.getAllTracksNotInPlaylist(PLAYLIST_ID);
-            });
+            assertThrows(SQLServerException.class, () -> trackDAO.getAllTracksNotInPlaylist(PLAYLIST_ID));
 
         } catch (Exception e) {
             fail(e);
@@ -182,9 +176,7 @@ public class TrackDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
 
-            assertThrows(SQLServerException.class, () -> {
-                trackDAO.deleteTrack(PLAYLIST_ID, TRACK_ID);
-            });
+            assertThrows(SQLServerException.class, () -> trackDAO.deleteTrack(PLAYLIST_ID, TRACK_ID));
 
         } catch (Exception e) {
             fail(e);
@@ -220,9 +212,7 @@ public class TrackDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
 
-            assertThrows(SQLServerException.class, () -> {
-                trackDAO.addTrackToPlaylist(PLAYLIST_ID, TRACK_ID, PLAYLIST_OFFLINEAVAILABLE);
-            });
+            assertThrows(SQLServerException.class, () -> trackDAO.addTrackToPlaylist(PLAYLIST_ID, TRACK_ID, PLAYLIST_OFFLINEAVAILABLE));
         } catch (Exception e) {
             fail(e);
         }

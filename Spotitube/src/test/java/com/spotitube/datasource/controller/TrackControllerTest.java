@@ -4,24 +4,25 @@ import com.spotitube.service.TrackService;
 import com.spotitube.service.dto.TrackDTO;
 import com.spotitube.datasource.ITokenDAO;
 import com.spotitube.datasource.ITrackDAO;
-import com.spotitube.mapper.DataMapper;
+import com.spotitube.service.dto.DTOMapper.DTOMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.ws.rs.core.Response;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class TrackControllerTest {
-    public String TOKEN = "111-111-111";
-    public int PLAYLIST_ID = 1;
-    public int TRACK_ID = 1;
-    public boolean OFFLINE_AVAILABLE = true;
+    public final String TOKEN = "111-111-111";
+    public final int PLAYLIST_ID = 1;
+    public final int TRACK_ID = 1;
+    public final boolean OFFLINE_AVAILABLE = true;
 
     TrackService trackService;
-    DataMapper dataMapper;
+    DTOMapper DTOMapper;
     ITokenDAO tokenDAO;
     ITrackDAO trackDAO;
     TrackDTO trackDTO;
@@ -32,11 +33,11 @@ public class TrackControllerTest {
 
         trackDAO = mock(ITrackDAO.class);
         tokenDAO = mock(ITokenDAO.class);
-        dataMapper = mock(DataMapper.class);
+        DTOMapper = mock(DTOMapper.class);
 
         trackService.setTrackDAO(trackDAO);
         trackService.setTokenDAO(tokenDAO);
-        trackService.setDataMapper(dataMapper);
+        trackService.setDataMapper(DTOMapper);
 
         trackDTO = new TrackDTO();
         trackDTO.id = TRACK_ID;
@@ -69,6 +70,7 @@ public class TrackControllerTest {
         int statusCodeExpected = 201;
 
         when(tokenDAO.verify(TOKEN)).thenReturn(true);
+        when(trackDAO.addTrackToPlaylist(eq(PLAYLIST_ID), eq(trackDTO.id), anyBoolean())).thenReturn(true);
 
         Response response = trackService.addTrackToPlaylist(PLAYLIST_ID, trackDTO, TOKEN);
 
@@ -76,10 +78,35 @@ public class TrackControllerTest {
     }
 
     @Test
-    public void deleteTrackFromPlaylist() {
+    public void addTrackToPlaylistTrackCannotBeAddedTest() {
+        int statusCodeExpected = 403;
+
+        when(tokenDAO.verify(TOKEN)).thenReturn(true);
+        when(trackDAO.addTrackToPlaylist(PLAYLIST_ID, TRACK_ID, OFFLINE_AVAILABLE)).thenReturn(false);
+
+        Response response = trackService.addTrackToPlaylist(PLAYLIST_ID, trackDTO, TOKEN);
+
+        assertEquals(statusCodeExpected, response.getStatus());
+    }
+
+    @Test
+    public void deleteTrackFromPlaylistTest() {
         int statusCodeExpected = 200;
 
         when(tokenDAO.verify(TOKEN)).thenReturn(true);
+        when(trackDAO.deleteTrack(PLAYLIST_ID, TRACK_ID)).thenReturn(true);
+
+        Response response = trackService.deleteTrackFromPlaylist(PLAYLIST_ID, TRACK_ID, TOKEN);
+
+        assertEquals(statusCodeExpected, response.getStatus());
+    }
+
+    @Test
+    public void deleteTrackFromPlaylistCannotBeDeletedTest() {
+        int statusCodeExpected = 403;
+
+        when(tokenDAO.verify(TOKEN)).thenReturn(true);
+        when(trackDAO.deleteTrack(PLAYLIST_ID, TRACK_ID)).thenReturn(false);
 
         Response response = trackService.deleteTrackFromPlaylist(PLAYLIST_ID, TRACK_ID, TOKEN);
 

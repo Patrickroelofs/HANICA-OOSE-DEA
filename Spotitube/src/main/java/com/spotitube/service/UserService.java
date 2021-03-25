@@ -1,5 +1,6 @@
 package com.spotitube.service;
 
+import com.spotitube.domain.User;
 import com.spotitube.service.dto.UserDTO;
 import com.spotitube.datasource.ITokenDAO;
 import com.spotitube.datasource.IUserDAO;
@@ -22,6 +23,7 @@ public class UserService {
   public Response login(UserDTO userDTO) {
     if(userDAO.verifyUser(userDTO.user, userDTO.password)) {
       Token token = tokenDAO.insert(userDTO.user);
+      User user = new User(userDTO.user, userDTO.password);
 
       return Response.status(Response.Status.OK).entity(token).build();
     } else {

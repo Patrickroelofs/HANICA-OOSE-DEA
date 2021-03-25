@@ -1,4 +1,4 @@
-package com.spotitube.mapper;
+package com.spotitube.service.dto.DTOMapper;
 
 import com.spotitube.service.dto.*;
 import com.spotitube.datasource.IPlaylistDAO;
@@ -9,13 +9,12 @@ import com.spotitube.domain.Track;
 import javax.inject.Inject;
 import java.util.ArrayList;
 
-public class DataMapper {
+public class DTOMapper {
 
     IPlaylistDAO playlistDAO;
     ITrackDAO trackDAO;
 
-    public PlaylistsDTO mapPlaylistToPlaylistsDTO(String token) {
-        ArrayList<Playlist> playlists = playlistDAO.getAllPlaylists(token);
+    public PlaylistsDTO mapPlaylistToPlaylistsDTO(ArrayList<Playlist> playlists) {
         PlaylistsDTO playlistsDTO = new PlaylistsDTO();
         playlistsDTO.playlists = new ArrayList<>();
 
@@ -33,15 +32,7 @@ public class DataMapper {
         return playlistsDTO;
     }
 
-    public TracksDTO mapTracksToTracksDTO(int forPlaylist, boolean toggler) {
-        ArrayList<Track> tracks;
-
-        if(toggler) {
-            tracks = trackDAO.getAllTracksNotInPlaylist(forPlaylist);
-        } else {
-            tracks = trackDAO.getAllTracks(forPlaylist);
-        }
-
+    public TracksDTO mapTracksToTracksDTO(ArrayList<Track> tracks) {
         TracksDTO tracksDTO = new TracksDTO();
         tracksDTO.tracks = new ArrayList<>();
 

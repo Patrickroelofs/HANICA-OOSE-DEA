@@ -5,10 +5,8 @@ import com.spotitube.domain.Track;
 import com.spotitube.exceptions.SQLServerException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import javax.sql.DataSource;
-import javax.ws.rs.InternalServerErrorException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,23 +18,22 @@ import static org.mockito.Mockito.*;
 
 public class PlaylistDAOTest {
     private PlaylistDAO playlistDAO;
-    private TokenDAO tokenDAO;
     private DataSource dataSource;
     private Connection connection;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
-    private ArrayList<Track> expectedTracks = new ArrayList<>();
-    private Track expectedTrack1 = new Track(1, "Track 1", "Performer 1");
-    private Track expectedTrack2 = new Track(2, "Track 2", "Performer 2");
+    private final ArrayList<Track> expectedTracks = new ArrayList<>();
+    private final Track expectedTrack1 = new Track(1, "Track 1", "Performer 1");
+    private final Track expectedTrack2 = new Track(2, "Track 2", "Performer 2");
 
-    private String TOKEN = "111-111-111";
-    private String PLAYLIST_NAME = "Playlist1";
-    private int PLAYLIST_ID = 1;
-    private String USERNAME = "patrick";
+    private final String TOKEN = "111-111-111";
+    private final String PLAYLIST_NAME = "Playlist1";
+    private final int PLAYLIST_ID = 1;
+    private final String USERNAME = "patrick";
 
-    private Playlist expectedPlaylist = new Playlist();
-    private ArrayList<Playlist> expectedPlaylists = new ArrayList<>();
+    private final Playlist expectedPlaylist = new Playlist();
+    private final ArrayList<Playlist> expectedPlaylists = new ArrayList<>();
 
     @BeforeEach
     public void setup() {
@@ -49,7 +46,7 @@ public class PlaylistDAOTest {
         playlistDAO = new PlaylistDAO();
         playlistDAO.setDataSource(dataSource);
 
-        tokenDAO = new TokenDAO();
+        TokenDAO tokenDAO = new TokenDAO();
         tokenDAO.setDataSource(dataSource);
 
         expectedPlaylist.setName(PLAYLIST_NAME);
@@ -101,9 +98,7 @@ public class PlaylistDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeQuery()).thenThrow(new SQLException());
 
-            assertThrows(SQLServerException.class, () -> {
-                playlistDAO.getAllPlaylists(TOKEN);
-            });
+            assertThrows(SQLServerException.class, () -> playlistDAO.getAllPlaylists(TOKEN));
 
         } catch (Exception e) {
             fail(e);
@@ -116,7 +111,6 @@ public class PlaylistDAOTest {
             String sql = "INSERT INTO playlists (name, owner) VALUES (?, ?)";
 
             Playlist expectedPlaylist = new Playlist(PLAYLIST_NAME);
-            expectedPlaylist.setTracks(expectedTracks);
 
             when(dataSource.getConnection()).thenReturn(connection);
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
@@ -144,9 +138,7 @@ public class PlaylistDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
 
-            assertThrows(SQLServerException.class, () -> {
-                playlistDAO.addPlaylist(PLAYLIST_NAME, USERNAME);
-            });
+            assertThrows(SQLServerException.class, () -> playlistDAO.addPlaylist(PLAYLIST_NAME, USERNAME));
 
         } catch (Exception e) {
             fail(e);
@@ -185,9 +177,7 @@ public class PlaylistDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
 
-            assertThrows(SQLServerException.class, () -> {
-                playlistDAO.deletePlaylist(PLAYLIST_ID);
-            });
+            assertThrows(SQLServerException.class, () -> playlistDAO.deletePlaylist(PLAYLIST_ID));
 
         } catch (Exception e) {
             fail(e);
@@ -204,7 +194,6 @@ public class PlaylistDAOTest {
             String expectedName = "playlist1";
 
             Playlist expectedPlaylist = new Playlist(expectedId, expectedName, expectedOwner);
-            expectedPlaylist.setTracks(expectedTracks);
 
             when(dataSource.getConnection()).thenReturn(connection);
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
@@ -235,9 +224,7 @@ public class PlaylistDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
 
-            assertThrows(SQLServerException.class, () -> {
-                playlistDAO.editPlaylist(PLAYLIST_NAME, PLAYLIST_ID);
-            });
+            assertThrows(SQLServerException.class, () -> playlistDAO.editPlaylist(PLAYLIST_NAME, PLAYLIST_ID));
 
         } catch (Exception e) {
             fail(e);

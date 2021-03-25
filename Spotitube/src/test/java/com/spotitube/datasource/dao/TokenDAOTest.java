@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
-import javax.ws.rs.InternalServerErrorException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -73,9 +72,7 @@ public class TokenDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeUpdate()).thenThrow(new SQLException());
 
-            assertThrows(SQLServerException.class, () -> {
-                tokenDAO.insert(USERNAME);
-            });
+            assertThrows(SQLServerException.class, () -> tokenDAO.insert(USERNAME));
         } catch (Exception e) {
             fail(e);
         }
@@ -115,9 +112,7 @@ public class TokenDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeQuery()).thenThrow(new SQLException());
 
-            assertThrows(SQLServerException.class, () -> {
-                tokenDAO.verify(TOKEN);
-            });
+            assertThrows(SQLServerException.class, () -> tokenDAO.verify(TOKEN));
         } catch (Exception e) {
             fail(e);
         }
@@ -181,9 +176,7 @@ public class TokenDAOTest {
             when(connection.prepareStatement(sql)).thenReturn(preparedStatement);
             when(preparedStatement.executeQuery()).thenThrow(new SQLException());
 
-            assertThrows(SQLServerException.class, () -> {
-                tokenDAO.getUsername(TOKEN);
-            });
+            assertThrows(SQLServerException.class, () -> tokenDAO.getUsername(TOKEN));
         } catch (Exception e) {
             fail(e);
         }

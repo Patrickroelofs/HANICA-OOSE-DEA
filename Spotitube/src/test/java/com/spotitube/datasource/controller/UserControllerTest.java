@@ -15,13 +15,12 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class UserControllerTest {
-    private String USERNAME = "patrick";
-    private String PASSWORD = "112112";
+    private final String USERNAME = "patrick";
+    private final String PASSWORD = "112112";
     private UserService userService;
     private UserDTO userDTO;
     private UserDAO userDAO;
-    private TokenDAO tokenDAO;
-    
+
     @BeforeEach
     public void setup() {
         userService = new UserService();
@@ -31,7 +30,7 @@ public class UserControllerTest {
         userDTO.password = PASSWORD;
 
         userDAO = mock(UserDAO.class);
-        tokenDAO = mock(TokenDAO.class);
+        TokenDAO tokenDAO = mock(TokenDAO.class);
 
         userService.setUserDAO(userDAO);
         userService.setTokenDAO(tokenDAO);

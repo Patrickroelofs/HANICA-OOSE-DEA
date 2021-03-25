@@ -6,7 +6,6 @@ import com.spotitube.exceptions.SQLServerException;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-import javax.ws.rs.InternalServerErrorException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

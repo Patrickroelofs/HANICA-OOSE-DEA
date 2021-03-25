@@ -3,8 +3,8 @@ package com.spotitube.domain;
 import java.util.UUID;
 
 public class Token {
-    private String user;
-    private String token;
+    private final String user;
+    private final String token;
 
     public Token(String user) {
         this.user = user;
