@@ -23,19 +23,10 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 
 public class DTOMapperTest {
-    private final String TOKEN = "111-111-111";
-    private final String PLAYLIST_NAME = "Playlist1";
-    private final int PLAYLIST_ID = 1;
-    private final String USERNAME = "patrick";
-
-    public int TRACK_ID = 1;
     public final String TRACK_TITLE = "Track Title";
     public final String TRACK_PERFORMER = "Performer";
-    public String PLAYLIST_TITLE = "PlaylistTitle";
-    public String PLAYLIST_PERFORMER = "PlaylistTitle";
     public final int PLAYLIST_DURATION = 100;
     public final String PLAYLIST_ALBUM = "PlaylistTitle";
-    public int PLAYLIST_PLAYCOUNT = 5;
     public final String PLAYLIST_PUBLICATIONDATE = "PlaylistTitle";
     public final String PLAYLIST_DESCRIPTION = "PlaylistTitle";
     public final boolean PLAYLIST_OFFLINEAVAILABLE = false;
@@ -47,16 +38,11 @@ public class DTOMapperTest {
     @BeforeEach
     public void setup() {
         DataSource dataSource = mock(DataSource.class);
-        Connection connection = mock(Connection.class);
-        PreparedStatement preparedStatement = mock(PreparedStatement.class);
-        ResultSet resultSet = mock(ResultSet.class);
 
         UserDAO userDAO = new UserDAO();
         PlaylistDAO playlistDAO = new PlaylistDAO();
         TrackDAO trackDAO = new TrackDAO();
         DTOMapper = new DTOMapper();
-        PlaylistDAO mockPlaylistDAO = Mockito.spy(playlistDAO);
-        TrackDAO mockTrackDAO = Mockito.spy(trackDAO);
 
         userDAO.setDataSource(dataSource);
         playlistDAO.setDataSource(dataSource);

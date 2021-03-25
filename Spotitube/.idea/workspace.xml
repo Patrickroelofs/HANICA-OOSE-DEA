@@ -11,31 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6bd94e4c-3310-4bdf-a8af-9029576de7f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documents/Deployment.png" beforeDir="false" afterPath="$PROJECT_DIR$/documents/Deployment.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documents/Package.png" beforeDir="false" afterPath="$PROJECT_DIR$/documents/Package.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documents/diagrams.asta" beforeDir="false" afterPath="$PROJECT_DIR$/documents/diagrams.asta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/IPlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/IPlaylistDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/ITrackDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/ITrackDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/PlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/PlaylistDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/TrackDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/TrackDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/domain/Playlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/domain/Playlist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/domain/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/domain/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/mapper/DataMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/service/dto/DTOMapper/DTOMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/service/PlaylistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/service/PlaylistService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/service/TrackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/service/TrackService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/PlaylistControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/PlaylistControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/TrackControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/TrackControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/UserControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/PlaylistDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/PlaylistDAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/TokenDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/TokenDAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/TrackDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/TrackDAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/UserDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/UserDAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/mapper/DataMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/mapper/DTOMapperTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Spotitube/WEB-INF/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/Spotitube/WEB-INF/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/mapper/DTOMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/mapper/DTOMapperTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +114,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="TomEE Server.TomEE 8.0.4">
+  <component name="RunManager" selected="JUnit.TESTS">
     <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
       <option name="adminPort" value="8005" />
       <option name="contextPath" />
@@ -152,13 +128,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -230,11 +208,11 @@
     <list>
       <item itemvalue="Database Script.setup database &amp; insert data" />
       <item itemvalue="JUnit.TESTS" />
-      <item itemvalue="TomEE Server.TomEE 8.0.4" />
       <item itemvalue="JUnit.TrackControllerTest.addTrackToPlaylistTest" />
       <item itemvalue="JUnit.PlaylistControllerTest.getAllPlaylistsTest" />
       <item itemvalue="JUnit.PlaylistControllerTest.addPlaylistPlaylistCannotBeAddedTest" />
       <item itemvalue="JUnit.PlaylistDAOTest.addPlaylistTest" />
+      <item itemvalue="TomEE Server.TomEE 8.0.4" />
     </list>
     <recent_temporary>
       <list>
@@ -295,6 +273,7 @@
       <workItem from="1616673893858" duration="84000" />
       <workItem from="1616674065977" duration="199000" />
       <workItem from="1616691642199" duration="3224000" />
+      <workItem from="1616697556686" duration="2777000" />
     </task>
     <servers />
   </component>
