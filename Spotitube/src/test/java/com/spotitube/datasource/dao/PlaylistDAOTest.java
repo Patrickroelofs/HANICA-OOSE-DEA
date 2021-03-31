@@ -1,5 +1,7 @@
 package com.spotitube.datasource.dao;
 
+import com.spotitube.datasource.dao.sql.PlaylistDAO;
+import com.spotitube.datasource.dao.sql.TokenDAO;
 import com.spotitube.domain.Playlist;
 import com.spotitube.domain.Track;
 import com.spotitube.exceptions.SQLServerException;

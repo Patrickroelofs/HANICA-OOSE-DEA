@@ -3,19 +3,15 @@ package com.spotitube.datasource.mapper;
 import com.spotitube.domain.Track;
 import com.spotitube.service.dto.PlaylistsDTO;
 import com.spotitube.service.dto.TracksDTO;
-import com.spotitube.datasource.dao.PlaylistDAO;
-import com.spotitube.datasource.dao.TrackDAO;
-import com.spotitube.datasource.dao.UserDAO;
+import com.spotitube.datasource.dao.sql.PlaylistDAO;
+import com.spotitube.datasource.dao.sql.TrackDAO;
+import com.spotitube.datasource.dao.sql.UserDAO;
 import com.spotitube.domain.Playlist;
 import com.spotitube.service.dto.DTOMapper.DTOMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

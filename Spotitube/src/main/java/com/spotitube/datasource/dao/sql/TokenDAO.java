@@ -1,4 +1,4 @@
-package com.spotitube.datasource.dao;
+package com.spotitube.datasource.dao.sql;
 
 import com.spotitube.datasource.ITokenDAO;
 import com.spotitube.domain.Token;

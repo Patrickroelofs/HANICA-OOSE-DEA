@@ -1,4 +1,4 @@
-package com.spotitube.datasource.dao;
+package com.spotitube.datasource.dao.sql;
 
 import com.spotitube.datasource.ITrackDAO;
 import com.spotitube.domain.Track;

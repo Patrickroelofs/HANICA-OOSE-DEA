@@ -10,7 +10,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bd94e4c-3310-4bdf-a8af-9029576de7f7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_bson_4_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongodb_driver_core_4_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongodb_driver_sync_4_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/mongo/UserDAOMongoDB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mongodbtest/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mongodbtest/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mongodbtest/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mongodbtest/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mongodbtest/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mongodbtest/mongodbtest.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mongodbtest/src/main/java/com/airhacks/JAXRSConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mongodbtest/src/main/java/com/patrickroelofs/Mongo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Spotitube.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Spotitube.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Spotitube_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Spotitube_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8932f413-f35a-4394-9d4f-ec8400133af6/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/PlaylistDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/sql/PlaylistDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/TokenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/sql/TokenDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/TrackDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/sql/TrackDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spotitube/datasource/dao/sql/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/PlaylistControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/PlaylistControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/controller/UserControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/PlaylistDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/PlaylistDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/TokenDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/TokenDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/TrackDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/TrackDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/UserDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/dao/UserDAOTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/mapper/DTOMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spotitube/datasource/mapper/DTOMapperTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,15 +155,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -177,7 +202,7 @@
       <module name="Spotitube" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.spotitube.datasource.dao.*" />
+          <option name="PATTERN" value="com.spotitube.datasource.dao.sql.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -274,6 +299,9 @@
       <workItem from="1616674065977" duration="199000" />
       <workItem from="1616691642199" duration="3224000" />
       <workItem from="1616697556686" duration="2777000" />
+      <workItem from="1617007040323" duration="1287000" />
+      <workItem from="1617119634921" duration="14000" />
+      <workItem from="1617122244649" duration="2252000" />
     </task>
     <servers />
   </component>
@@ -333,6 +361,6 @@
     <SUITE FILE_PATH="coverage/Spotitube$TokenDAOTest.ic" NAME="TokenDAOTest Coverage Results" MODIFIED="1616067736672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.spotitube.datasource.dao.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Spotitube$TESTS.ic" NAME="TESTS Coverage Results" MODIFIED="1616696901193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Spotitube$TESTS.ic" NAME="TESTS Coverage Results" MODIFIED="1617012217236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

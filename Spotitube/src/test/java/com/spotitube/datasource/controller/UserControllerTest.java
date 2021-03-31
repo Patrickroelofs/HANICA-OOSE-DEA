@@ -2,8 +2,8 @@ package com.spotitube.datasource.controller;
 
 import com.spotitube.service.UserService;
 import com.spotitube.service.dto.UserDTO;
-import com.spotitube.datasource.dao.TokenDAO;
-import com.spotitube.datasource.dao.UserDAO;
+import com.spotitube.datasource.dao.sql.TokenDAO;
+import com.spotitube.datasource.dao.sql.UserDAO;
 import com.spotitube.domain.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

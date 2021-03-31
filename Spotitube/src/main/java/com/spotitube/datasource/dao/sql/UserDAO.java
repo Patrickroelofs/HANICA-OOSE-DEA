@@ -1,4 +1,4 @@
-package com.spotitube.datasource.dao;
+package com.spotitube.datasource.dao.sql;
 
 import com.spotitube.datasource.IUserDAO;
 import com.spotitube.exceptions.SQLServerException;

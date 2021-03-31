@@ -1,5 +1,6 @@
 package com.spotitube.datasource.dao;
 
+import com.spotitube.datasource.dao.sql.TokenDAO;
 import com.spotitube.domain.Token;
 import com.spotitube.exceptions.SQLServerException;
 import org.junit.jupiter.api.BeforeEach;
